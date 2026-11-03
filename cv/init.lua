@@ -3,7 +3,7 @@
 
 local Directory = "catsix"
 
-for _, Folder in {Directory, `${Directory}/games`, `${Directory}/profiles`, `${Directory}/assets`, `${Directory}/libraries`, `${Directory}/guis`} do
+for _, Folder in {Directory, `${Directory}/games`, `${Directory}/profiles`, `${Directory}/assets`, `${Directory}/libraries`, `${Directory}/gui`} do
     if not isfolder(Folder) then
         makefolder(Folder)
     end
