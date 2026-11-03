@@ -25,14 +25,14 @@ for _, Folder: string in {Directory, `{Directory}/games`, `{Directory}/profiles`
 end
 
 if not shared.VapeDeveloper and isfolder("blueinhalerrewrite") and isfolder("blueinhalerrewrite/profiles") then
-    for _, v: string in listfiles("catrewrite/profiles") do
+    for _, v: string in listfiles("blueinhalerrewrite/profiles") do
         if not v:find("commit.txt") then
             local OldPath: string = v
-            v = v:gsub("catrewrite", Directory)
+            v = v:gsub("blueinhalerrewrite", Directory)
             writefile(v, readfile(OldPath))
         end
     end
-    delfolder("catrewrite/profiles")
+    delfolder("blueinhalerrewrite/profiles")
 end
 
 getgenv().matchDodgeActive = false
@@ -134,12 +134,12 @@ end
 
 local function DownloadFile(FilePath: string, Reader)
     if not isfile(FilePath) then
-        error(`Catsix offline dependency missing: ${FilePath}`)
+        error(`Blue Inhaler offline dependency missing: ${FilePath}`)
     end
 
     local Contents = readfile(FilePath)
     if type(Contents) ~= "string" or Contents == "" then
-        error(`Catsix offline dependency is empty or unreadable: ${FilePath}`)
+        error(`Blue Inhaler offline dependency is empty or unreadable: ${FilePath}`)
     end
 
     return (Reader or function(Path) return readfile(Path) end)(FilePath)
