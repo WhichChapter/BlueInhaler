@@ -1,3 +1,3 @@
 -- Catsix offline build.
 -- Remote key/licence authentication is intentionally disabled.
--- This module does not contact CatVape services.
+-- This module does not contact Blue Inhaler services.
