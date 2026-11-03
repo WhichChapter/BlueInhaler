@@ -53,7 +53,7 @@ Run(function()
 	            local Path: string = `{vape.Directory}/libraries/replay.lua`
 	            if not isfile(Path) then
 	                local Downloaded: boolean, Response: any = pcall(function()
-	                    return game:HttpGet("https://api.catvape.dev/download/src/libraries/replay.lua", true)
+	                    error(`Offline mode: missing local file {Path}`)
 	                end)
 	                if not Downloaded or type(Response) ~= "string" or Response == "404: Not Found" then
 	                    return nil, "download failed"
