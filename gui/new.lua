@@ -37,6 +37,64 @@ local GuiService = cloneref(game:GetService("GuiService"))
 local RunService = cloneref(game:GetService("RunService"))
 local HttpService = cloneref(game:GetService("HttpService"))
 local Lighting = cloneref(game:GetService("Lighting"))
+-- [[ 1. Core Services & Variables (Top of your script) ]]
+local p1 = cloneref(game:GetService("Players"))
+local lp1 = p1.LocalPlayer
+
+-- (If you have a library initialization like vape = {}, keep it around here too)
+local vape = {}
+vape.Directory = "blueinhaler" -- (Example directory path)
+
+
+-- ==========================================================
+-- [[ 2. PASTE THE WHITELIST SYSTEM RIGHT HERE ]]
+-- ==========================================================
+
+local function VerifyWhitelist()
+    local whitelistPath = `{vape.Directory}/whitelist.lua`
+    
+    if not isfile(whitelistPath) then
+        pcall(function()
+            writefile(whitelistPath, "-- Add your authorized user IDs here\nreturn { AuthorizedIds = {} }")
+        end)
+        warn("[blue inhaler] whitelist.lua was missing. A template file has been generated.")
+    end
+
+    local success, whitelistModule = pcall(function()
+        return loadstring(readfile(whitelistPath), "whitelist.lua")()
+    end)
+
+    if not success or type(whitelistModule) ~= "table" or not whitelistModule.AuthorizedIds then
+        lp1:Kick("[Blue Inhaler] Whitelist validation failed: Corrupted or unreadable whitelist file.")
+        return false
+    end
+
+    local isAuthorized = false
+    for _, id in ipairs(whitelistModule.AuthorizedIds) do
+        if id == lp1.UserId then
+            isAuthorized = true
+            break
+        end
+    end
+
+    if not isAuthorized then
+        lp1:Kick("[Blue Inhaler] You are not authorized to use this script.")
+        return false
+    end
+
+    return true
+end
+
+-- Run verification check before anything else loads
+if not VerifyWhitelist() then
+    return
+end
+
+
+-- ==========================================================
+-- [[ 3. Rest of your script (GUI creation, windows, features) ]]
+-- ==========================================================
+print("Whitelist passed! Loading GUI...")
 
 local FontSize: GetTextBoundsParams = Instance.new("GetTextBoundsParams")
 FontSize.Width = math.huge
