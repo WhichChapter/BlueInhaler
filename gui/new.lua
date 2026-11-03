@@ -48,7 +48,7 @@ local function VerifyWhitelist()
 
     if not isfile(whitelistPath) then
         warn("[Blue Inhaler] Whitelist file is missing: " .. whitelistPath)
-        LocalPlayer:Kick("[Blue Inhaler] Whitelist file is missing. Reinstall/update the files.")
+        LocalPlayer:Kick("[Blue Inhaler] Whitelist file is missing. Reinstall/update the files. | https://discord.gg/8fRwatznrc")
         return false
     end
 
@@ -82,7 +82,7 @@ local function VerifyWhitelist()
         end
     end
 
-    LocalPlayer:Kick("[Blue Inhaler] You are not authorized to use this script.")
+    LocalPlayer:Kick("[Blue Inhaler] You are not authorized to use this script. | https://discord.gg/8fRwatznrc")
     return false
 end
 
