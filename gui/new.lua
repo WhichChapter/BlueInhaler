@@ -201,10 +201,14 @@ do
             Sat = 1 - (0.48 * math.min((Hue - 0.577) / 0.088, 1))
         end
 
-        if Hue > 0.674 then
-            Sat = 0.52 + (0.48 * math.min((Hue - 0.674) / 0.149, 1))
-        end
+        local function safe_min(a, b)
+    return a < b and a or b
+end
 
+if Hue > 0.674 then
+    local diff = (Hue - 0.674) / 0.149
+    Sat = 0.52 + (0.48 * safe_min(diff, 1))
+end
         if Hue > 0.869 then
             Sat = 1 - (0.26 * math.min((Hue - 0.869) / 0.131, 1))
         end
