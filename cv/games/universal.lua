@@ -15,7 +15,7 @@ end
 local function DownloadFile(Path: string, Func)
     if not isfile(Path) then
         local Success, Response = pcall(function()
-            return game:HttpGet(`https://api.catvape.dev/download/src/{select(1, Path:gsub(`^{vape.Directory}/`, ""))}`, true)
+            error(`Offline mode: missing local file {FilePath or Path}`)
         end)
         if not Success or Response == "404: Not Found" then
             error(Response)
