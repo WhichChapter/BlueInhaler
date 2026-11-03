@@ -2,7 +2,7 @@ local License = ... or {}
 local vape = {
     ActiveBinds = {},
     Categories = {},
-    Directory = "catprivate",
+    Directory = "catsix",
     FavoriteCount = 0,
     GUIColor = {
         Hue = 0.46,
@@ -200,13 +200,9 @@ local function GetFeatureTag(Name: string)
     if not FeatureTags then
         FeatureTags = {}
 
-        if not isfile(`{vape.Directory}/features.json`) then
-            pcall(function()
-                writefile(`{vape.Directory}/features.json`, game:HttpGet("https://api.catvape.dev/download/src/features.json", true))
-            end)
-        end
+        -- Feature tags are optional in the offline build.
 
-        local Features = LoadJSON(`{vape.Directory}/features.json`)
+local Features = LoadJSON(`{vape.Directory}/features.json`)
         for Tag: string, v: string in {updated = "updated", new = "added"} do
             local List = Features and Features[v]
 
@@ -899,23 +895,8 @@ do
 
     local function DownloadFile(FilePath: string, Callback: ((string) -> any)?)
         if not AssetExists(FilePath) then
-            CreateDownloader(FilePath)
-
-            local Success, Data = pcall(function()
-                return game:HttpGet(`https://api.catvape.dev/download/src/{select(1, FilePath:gsub(`^{vape.Directory}/`, ""))}`, true)
-            end)
-
-            if not Success or Data == "404: Not Found" then
-                error(Data)
-            end
-
-            if FilePath:find(".lua", 1, true) then
-                Data = `--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n{Data}`
-            end
-
-            writefile(FilePath, Data)
+            error(`Catsix offline asset/dependency missing: ${FilePath}`)
         end
-
         return (Callback or readfile)(FilePath)
     end
 
@@ -2449,7 +2430,7 @@ function vape:LoadGUI()
 	ScarcityBanner.FontFace = UIPallet.Font
 	ScarcityBanner.Position = UDim2.fromScale(0, 0.8)
 	ScarcityBanner.Size = UDim2.fromScale(1, 0.022)
-	ScarcityBanner.Text = "Thank you for choosing catvape - catvape.dev"
+	ScarcityBanner.Text = "Thank you for choosing Catsix Offline"
 	ScarcityBanner.TextColor3 = Color3.new(1, 1, 1)
 	ScarcityBanner.TextScaled = true
 	ScarcityBanner.TextStrokeTransparency = 0.5
@@ -2611,11 +2592,7 @@ function vape:LoadGUI()
 	        end
 	
 	        shared.vapereload = true
-	        if shared.VapeDeveloper then
-	            loadstring(readfile(`{vape.Directory}/init.lua`), "init")(License)
-	        else
-	            loadstring(game:HttpGet("https://api.catvape.dev/download/src/init.lua", true), "init")(License)
-	        end
+	        loadstring(readfile(`{vape.Directory}/init.lua`), "init")({})
 	    end,
 	    Tooltip = "This will set your profile to the default settings of Vape"
 	})
@@ -2803,11 +2780,7 @@ function vape:LoadGUI()
 	    Name = "Reinject",
 	    Function = function()
 	        shared.vapereload = true
-	        if shared.VapeDeveloper then
-	            loadstring(readfile(`{vape.Directory}/init.lua`), "init")(License)
-	        else
-	            loadstring(game:HttpGet("https://api.catvape.dev/download/src/init.lua", true), "init")(License)
-	        end
+	        loadstring(readfile(`{vape.Directory}/init.lua`), "init")({})
 	    end,
 	    Tooltip = "Reloads vape for debugging purposes"
 	})
@@ -4115,19 +4088,11 @@ function vape:LoadGUI()
 		    end
 		
 		    if not isfile(LibraryPath) then
-		        local Success, Response = pcall(function()
-		            return game:HttpGet("https://api.catvape.dev/download/src/libraries/assistant.lua", true)
-		        end)
-		
-		        if not Success or Response == "404: Not Found" then
-		            task.spawn(error, `Assistant failed to download: {Response}`)
-		            return
-		        end
-		
-		        writefile(LibraryPath, `--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n{Response}`)
-		    end
-		
-		    local Callback, Error = loadstring(readfile(LibraryPath), "assistant")
+            task.spawn(error, `Offline assistant module is missing: {LibraryPath}`)
+            return
+        end
+
+        local Callback, Error = loadstring(readfile(LibraryPath), "assistant")
 		    if not Callback then
 		        task.spawn(error, `Assistant failed to load: {Error}`)
 		        return
@@ -12966,43 +12931,13 @@ Components = {
 		end
 		
 		local function SendLike(Entry, Wanted: boolean)
-		    local Liked, Likes = Entry.liked, Entry.likes or 0
-		    Entry.liked = Wanted
-		    Entry.likes = math.max(Likes + (Wanted and 1 or -1), 0)
-		    Voting = true
-		    RenderVotes(Entry)
-		
-		    task.spawn(function()
-		        local Response = request({
-		            Url = "https://api.catvape.dev/configs/like",
-		            Method = "POST",
-		            Headers = {
-		                ["Content-Type"] = "application/json"
-		            },
-		            Body = HttpService:JSONEncode({
-		                key = License.Key or "_key",
-		                filename = Entry.filename,
-		                like = Wanted
-		            })
-		        })
-		        Voting = false
-		
-		        if Response and Response.Body then
-		            local Body = HttpService:JSONDecode(HttpService:JSONDecode(Response.Body).response)
-		            Entry.liked = Body.liked == true
-		            Entry.likes = math.max(Likes + ((Entry.liked and 1 or 0) - (Liked and 1 or 0)), 0)
-		        else
-		            Entry.liked, Entry.likes = Liked, Likes
-		            vape:CreateNotification("Cat", `Failed to {Wanted and "like" or "unlike"} "{Entry.Name}"`, 8, "warning")
-		        end
-		
-		        if Selected == Entry then
-		            RenderVotes(Entry)
-		        end
-		    end)
-		end
-		
-		local function AddCard(Entry)
+            Entry.liked = Wanted
+            Entry.likes = math.max((Entry.likes or 0) + (Wanted and 1 or -1), 0)
+            Voting = false
+            RenderVotes(Entry)
+        end
+
+        local function AddCard(Entry)
 		    local Name: string = Entry.Name
 		    local Author: string = Entry.Author
 		
@@ -13263,38 +13198,13 @@ Components = {
 		end
 		
 		local function Refresh()
-		    ShowSkeletons()
-		
-		    local Response = request({
-		        Url = "https://api.catvape.dev/configs/get",
-		        Method = "POST",
-		        Headers = {
-		            ["Content-Type"] = "application/json"
-		        },
-		        Body = HttpService:JSONEncode({key = License.Key or "_key"})
-		    })
-		    local Payload = Response and Response.Body and HttpService:JSONDecode(HttpService:JSONDecode(Response.Body).response)
-		    local Configs = Payload and Payload.configs
-		    table.clear(Component.Configs)
-		    Component.Viewer = Payload and Payload.viewer
-		
-		    if Configs then
-		        for _, v: any in Configs do
-		            if v.config_name then
-		                v.Uploaded = ParseTimestamp(v.uploaded_at)
-		                v.Name, v.Author = ParseFilename(v)
-		                v.likes = tonumber(v.likes) or 0
-		                v.liked = v.liked == true
-		                v.mine = v.mine == true
-		                table.insert(Component.Configs, v)
-		            end
-		        end
-		    end
-		    RenderOwned()
-		    Render()
-		end
-		
-		Component.Refresh = Refresh
+            table.clear(Component.Configs)
+            Component.Viewer = nil
+            RenderOwned()
+            Render()
+        end
+
+        Component.Refresh = Refresh
 		
 		local function AddSort(Name: string, Label: string, Order: number)
 		    local Text: string = Label:upper()
@@ -13574,45 +13484,11 @@ Components = {
 		end)
 		
 		Confirm.MouseButton1Click:Connect(function()
-		    if NameBox.Text == "" then
-		        vape:CreateNotification("Cat", "No profile name provided", 5, "warning")
-		        return
-		    end
-		
-		    if not UploadSource then
-		        vape:CreateNotification("Cat", "That profile has no saved settings yet", 8, "warning")
-		        return
-		    end
-		
-		    ShowPanel(nil)
-		    vape:CreateNotification("Cat", "Publishing profile", 5, "info")
-		
-		    local Response = request({
-		        Url = "https://api.catvape.dev/configs/set",
-		        Method = "POST",
-		        Headers = {
-		            ["Content-Type"] = "application/json"
-		        },
-		        Body = HttpService:JSONEncode({
-		            key = License.Key or "_key",
-		            config_name = NameBox.Text,
-		            config = UploadSource,
-		            description = DescriptionBox.Text,
-		            anonymous = AnonymousToggle.Enabled
-		        })
-		    })
-		
-		    if Response and Response.StatusCode and Response.StatusCode >= 200 and Response.StatusCode < 300 then
-		        vape:CreateNotification("Cat", `Published "{NameBox.Text}"`, 10, "info")
-		        Refresh()
-		    else
-		        local Decoded = Response and Response.Body and select(2, pcall(HttpService.JSONDecode, HttpService, Response.Body))
-		        local Reason = type(Decoded) == "table" and type(Decoded.errors) == "table" and type(Decoded.errors[1]) == "table" and select(2, next(Decoded.errors[1]))
-		        vape:CreateNotification("Cat", Reason and `Failed to publish profile: {Reason}` or "Failed to publish profile", 10, "warning")
-		    end
-		end)
-		
-		Dislike.MouseButton1Click:Connect(function()
+            ShowPanel(nil)
+            vape:CreateNotification("Catsix Offline", "Publishing profiles is unavailable offline. Save profiles locally instead.", 8, "info")
+        end)
+
+        Dislike.MouseButton1Click:Connect(function()
 		    if Voting or not Selected or not Selected.filename then return end
 		    local Entry = Selected
 		    local Disliked: boolean = not Dislikes[Entry.filename]
@@ -13661,32 +13537,10 @@ Components = {
 		end)
 		
 		EditorRemove.MouseButton1Click:Connect(function()
-		    if not Editing then return end
-		    local Entry = Editing
-		
-		    ShowPanel(nil)
-		    local Response = request({
-		        Url = "https://api.catvape.dev/configs/delete",
-		        Method = "POST",
-		        Headers = {
-		            ["Content-Type"] = "application/json"
-		        },
-		        Body = HttpService:JSONEncode({
-		            key = License.Key or "_key",
-		            config_name = Entry.config_name
-		        })
-		    })
-		    local Body = Response and Response.Body and HttpService:JSONDecode(HttpService:JSONDecode(Response.Body).response)
-		
-		    if Body and Body.success then
-		        vape:CreateNotification("Cat", `Removed "{Entry.Name}"`, 8, "info")
-		        Refresh()
-		    else
-		        vape:CreateNotification("Cat", `Failed to remove "{Entry.Name}"`, 8, "warning")
-		    end
-		end)
-		
-		GridLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+            vape:CreateNotification("Catsix Offline", "Cloud profile deletion is unavailable offline.", 6, "info")
+        end)
+
+        GridLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 		    if vape.ThreadFix then
 		        setthreadidentity(8)
 		    end
@@ -13720,42 +13574,10 @@ Components = {
 		end)
 		
 		Update.MouseButton1Click:Connect(function()
-		    if not Editing then return end
-		    local Entry = Editing
-		    local Content = EditorSource or Entry.config
-		
-		    if not Content then
-		        vape:CreateNotification("Cat", `Could not read the settings for "{Entry.Name}"`, 8, "warning")
-		        return
-		    end
-		
-		    ShowPanel(nil)
-		    vape:CreateNotification("Cat", `Updating "{Entry.Name}"`, 5, "info")
-		
-		    local Response = request({
-		        Url = "https://api.catvape.dev/configs/set",
-		        Method = "POST",
-		        Headers = {
-		            ["Content-Type"] = "application/json"
-		        },
-		        Body = HttpService:JSONEncode({
-		            key = License.Key or "_key",
-		            config_name = Entry.config_name,
-		            config = Content,
-		            description = EditorDescription.Text,
-		            anonymous = EditorAnonymous.Enabled
-		        })
-		    })
-		
-		    if Response and Response.StatusCode and Response.StatusCode >= 200 and Response.StatusCode < 300 then
-		        vape:CreateNotification("Cat", `Updated "{Entry.Name}"`, 10, "info")
-		        Refresh()
-		    else
-		        vape:CreateNotification("Cat", `Failed to update "{Entry.Name}"`, 10, "warning")
-		    end
-		end)
-		
-		Window:GetPropertyChangedSignal("Visible"):Connect(function()
+            vape:CreateNotification("Catsix Offline", "Cloud profile updates are unavailable offline.", 6, "info")
+        end)
+
+        Window:GetPropertyChangedSignal("Visible"):Connect(function()
 		    vape:UpdateGUI(vape.GUIColor.Hue, vape.GUIColor.Sat, vape.GUIColor.Value)
 		    vape:UpdateVapeButton()
 		    if Window.Visible and not Loading then
