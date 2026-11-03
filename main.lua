@@ -185,6 +185,11 @@ if not isfolder(`{Directory}/assets/{Gui}`) then
     makefolder(`{Directory}/assets/{Gui}`)
 end
 vape, RunPremium = loadstring(DownloadFile(`{Directory}/gui/{Gui}.lua`), "gui")(License)
+if type(vape) ~= "table" then
+    warn("[Blue Inhaler] GUI did not initialize. Check whitelist.lua and the GUI error above.")
+    shared.vapeloading = nil
+    return
+end
 shared.vape = vape
 shared.vapesmooth = false
 _G.vape = vape
