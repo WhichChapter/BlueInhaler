@@ -167,7 +167,7 @@ local function FinishLoading()
     end))
 
     if not shared.vapereload then
-        vape:CreateNotification("Finished Loading", (getgenv().catuser and `Authenticated as {getgenv().catuser} with {getgenv().catrole}, ` or "") .. (vape.VapeButton and "Press the button in the top right" or `Press {table.concat(vape.GUIBind and vape.GUIBind.Keys or {"RightShift"}, " + "):upper()}`) .. " to open GUI", 5)
+        vape:CreateNotification("Blue Inhaler", vape.VapeButton and "Press the button in the top right to open the GUI" or `Press {table.concat(vape.GUIBind and vape.GUIBind.Keys or {"RightShift"}, " + "):upper()} to open the GUI`, 5)
         task.delay(0.05, function()
             if shared.updated then
                 vape:CreateNotification("Blue Inhaler", `Build updated from {(shared.updated or ""):sub(1, 8)} to {(readfile(`{Directory}/profiles/commit.txt`) or ""):sub(1, 8)}`, 10, "info")
