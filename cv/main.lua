@@ -2,7 +2,7 @@ local License = ... or {}
 if shared.vapedeveloper ~= nil then
     shared.VapeDeveloper = shared.vapedeveloper
 end
-local Directory: string = shared.VapeDeveloper and "catprivate" or "catsix"
+local Directory: string = "catprivate"
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
