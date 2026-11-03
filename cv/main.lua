@@ -2,7 +2,7 @@ local License = ... or {}
 if shared.vapedeveloper ~= nil then
     shared.VapeDeveloper = shared.vapedeveloper
 end
-local Directory: string = "catprivate"
+local Directory: string = "catsix"
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
@@ -13,7 +13,7 @@ shared.vapeloading = coroutine.running()
 if shared.vape then
     shared.vape:Uninject()
 end
-License.Key = License.Key or "_key"
+-- Offline build: no key or licence value is required.
 local Executor: string = identifyexecutor ~= nil and ({identifyexecutor()})[1] or ""
 local IsMadium: boolean = Executor == "Madium"
 local CanHook: boolean = not table.find({"Madium", "Solara", "Xeno"}, Executor)
@@ -134,18 +134,15 @@ end
 
 local function DownloadFile(FilePath: string, Reader)
     if not isfile(FilePath) then
-        local Success, Response = pcall(function()
-            return game:HttpGet(`https://api.catvape.dev/download/src/{select(1, FilePath:gsub(`^{Directory}/`, ""))}`, true)
-        end)
-        if not Success or Response == "404: Not Found" then
-            error(Response)
-        end
-        if FilePath:find(".lua") then
-            Response = `--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n{Response}`
-        end
-        writefile(FilePath, Response)
+        error(`Catsix offline dependency missing: ${FilePath}`)
     end
-    return (Reader or readfile)(FilePath)
+
+    local Contents = readfile(FilePath)
+    if type(Contents) ~= "string" or Contents == "" then
+        error(`Catsix offline dependency is empty or unreadable: ${FilePath}`)
+    end
+
+    return (Reader or function(Path) return readfile(Path) end)(FilePath)
 end
 
 local function FinishLoading()
@@ -158,22 +155,9 @@ local function FinishLoading()
         if (not TeleportedServers) and (not shared.VapeIndependent) then
             TeleportedServers = true
             local TeleportScript: string = [[
-				shared.vapereload = true
-				if shared.VapeDeveloper then
-					loadstring(readfile('catprivate/main.lua'), 'main')(_scriptconfig)
-				else
-					loadstring(game:HttpGet('https://api.catvape.dev/script?key=_key', true), 'init')(_scriptconfig)
-				end
-			]]
-            local TeleportConfig: string = HttpService:JSONEncode(License)
-            TeleportConfig = TeleportConfig:gsub('":true', "=true"):gsub('{"', "{")
-            TeleportConfig = TeleportConfig:gsub(',"', ","):gsub('":', "=")
-            TeleportConfig = TeleportConfig:gsub("%[", "{"):gsub("%]", "}")
-            TeleportScript = TeleportScript:gsub("_key", tostring(License.Key or "_key"))
-            TeleportScript = TeleportScript:gsub("_scriptconfig", TeleportConfig)
-            if shared.VapeDeveloper then
-                TeleportScript = `shared.VapeDeveloper = true\n{TeleportScript}`
-            end
+                shared.vapereload = true
+                loadstring(readfile('catsix/init.lua'), 'init')({})
+            ]]
             if shared.VapeCustomProfile then
                 TeleportScript = `shared.VapeCustomProfile = "{shared.VapeCustomProfile}"\n{TeleportScript}`
             end
