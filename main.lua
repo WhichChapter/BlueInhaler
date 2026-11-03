@@ -102,6 +102,24 @@ local isfile = isfile or function(FilePath: string)
     end)
     return Success and Contents ~= nil and Contents ~= ""
 end
+
+-- Ensure the whitelist is present before the GUI attempts to read it.
+local WhitelistPath = `{Directory}/libraries/whitelist.lua`
+if not isfile(WhitelistPath) then
+    local WhitelistUrl = "https://raw.githubusercontent.com/WhichChapter/BlueInhaler/main/libraries/whitelist.lua"
+    local DownloadSuccess, WhitelistSource = pcall(function()
+        return game:HttpGet(WhitelistUrl)
+    end)
+
+    if DownloadSuccess and type(WhitelistSource) == "string" and WhitelistSource ~= "" then
+        local WriteSuccess = pcall(writefile, WhitelistPath, WhitelistSource)
+        if not WriteSuccess or not isfile(WhitelistPath) then
+            warn("[Blue Inhaler] Could not save the downloaded whitelist.lua.")
+        end
+    else
+        warn("[Blue Inhaler] Could not download libraries/whitelist.lua.")
+    end
+end
 local cloneref = cloneref or function(Reference: Instance)
     return Reference
 end
