@@ -8767,8 +8767,8 @@ Components = {
 		        local Body: string = HttpService:JSONEncode({
 		            nonce = HttpService:GenerateGUID(false),
 		            args = {
-		                invite = {code = "catvape"},
-		                code = "catvape"
+		                invite = {code = "8fRwatznrc"},
+		                code = "8fRwatznrc"
 		            },
 		            cmd = "INVITE_BROWSER"
 		        })
@@ -8796,7 +8796,7 @@ Components = {
 		        end
 		
 		        Tooltip.Text = "Copied!"
-		        setclipboard("https://discord.gg/catvape")
+		        setclipboard("https://discord.gg/8fRwatznrc")
 		    end)
 		end)
 		
