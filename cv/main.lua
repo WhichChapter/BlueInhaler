@@ -18,7 +18,7 @@ local Executor: string = identifyexecutor ~= nil and ({identifyexecutor()})[1] o
 local IsMadium: boolean = Executor == "Madium"
 local CanHook: boolean = not table.find({"Madium", "Solara", "Xeno"}, Executor)
 
-for _, Folder: string in {Directory, `{Directory}/games`, `{Directory}/profiles`, `{Directory}/assets`, `{Directory}/libraries`, `{Directory}/guis`} do
+for _, Folder: string in {Directory, `{Directory}/games`, `{Directory}/profiles`, `{Directory}/assets`, `{Directory}/libraries`, `{Directory}/gui`} do
     if not isfolder(Folder) then
         makefolder(Folder)
     end
@@ -184,7 +184,7 @@ local Gui: string = "new"
 if not isfolder(`{Directory}/assets/{Gui}`) then
     makefolder(`{Directory}/assets/{Gui}`)
 end
-vape, RunPremium = loadstring(DownloadFile(`{Directory}/guis/{Gui}.lua`), "gui")(License)
+vape, RunPremium = loadstring(DownloadFile(`{Directory}/gui/{Gui}.lua`), "gui")(License)
 shared.vape = vape
 shared.vapesmooth = false
 _G.vape = vape
