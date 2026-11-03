@@ -24,7 +24,7 @@ for _, Folder: string in {Directory, `{Directory}/games`, `{Directory}/profiles`
     end
 end
 
-if not shared.VapeDeveloper and isfolder("catrewrite") and isfolder("catrewrite/profiles") then
+if not shared.VapeDeveloper and isfolder("blueinhalerrewrite") and isfolder("blueinhalerrewrite/profiles") then
     for _, v: string in listfiles("catrewrite/profiles") do
         if not v:find("commit.txt") then
             local OldPath: string = v
@@ -91,7 +91,7 @@ local vape, RunPremium
 local loadstring = function(...)
     local Chunk, Error = loadstring(...)
     if Error and vape then
-        vape:CreateNotification("Vape", `Failed to load : {Error}`, 30, "alert")
+        vape:CreateNotification("Blue Inhaler", `Failed to load : {Error}`, 30, "alert")
     end
     return Chunk
 end
@@ -170,7 +170,7 @@ local function FinishLoading()
         vape:CreateNotification("Finished Loading", (getgenv().catuser and `Authenticated as {getgenv().catuser} with {getgenv().catrole}, ` or "") .. (vape.VapeButton and "Press the button in the top right" or `Press {table.concat(vape.GUIBind and vape.GUIBind.Keys or {"RightShift"}, " + "):upper()}`) .. " to open GUI", 5)
         task.delay(0.05, function()
             if shared.updated then
-                vape:CreateNotification("Cat", `Script has updated from {(shared.updated or ""):sub(1, 8)} to {(readfile(`{Directory}/profiles/commit.txt`) or ""):sub(1, 8)}`, 10, "info")
+                vape:CreateNotification("Blue Inhaler", `Build updated from {(shared.updated or ""):sub(1, 8)} to {(readfile(`{Directory}/profiles/commit.txt`) or ""):sub(1, 8)}`, 10, "info")
             end
         end)
     end
@@ -192,7 +192,7 @@ getgenv().used_init = true
 
 if shared.maincat then
     redirect()
-    Players.LocalPlayer:Kick("Your script is outdated, get new one at discord.gg/catvape")
+    Players.LocalPlayer:Kick("Your Blue Inhaler build is outdated. Please update your local files.")
     return
 end
 
