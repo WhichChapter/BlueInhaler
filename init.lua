@@ -1,7 +1,6 @@
 -- Blue Inhaler bootstrap installer
 -- Downloads the published Lua files from GitHub into the executor filesystem.
 
-local HttpService = game:GetService("HttpService")
 local Directory = "catsix"
 local BaseURL = "https://raw.githubusercontent.com/WhichChapter/BlueInhaler/main/"
 
@@ -41,6 +40,7 @@ local Files = {
     "games/94987506187454.lua",
     "games/universal.lua",
     "gui/new.lua",
+    "init.lua",
     "libraries/assistant.lua",
     "libraries/cheatengine.lua",
     "libraries/communication.lua",
@@ -58,12 +58,8 @@ local Files = {
 }
 
 local function EnsureFolder(path)
-    if isfolder and isfolder(path) then
-        return
-    end
-    if makefolder then
-        pcall(makefolder, path)
-    end
+    if isfolder and isfolder(path) then return end
+    if makefolder then pcall(makefolder, path) end
 end
 
 local function EnsureParentFolders(path)
@@ -81,9 +77,7 @@ local function GetURL(url)
     local ok, result = pcall(function()
         return game:HttpGet(url)
     end)
-    if ok and type(result) == "string" and result ~= "" then
-        return result
-    end
+    if ok and type(result) == "string" and result ~= "" then return result end
 
     local requestFunction = request or http_request or (syn and syn.request)
     if requestFunction then
@@ -93,7 +87,6 @@ local function GetURL(url)
         end
         error("HTTP request failed: " .. tostring(response and response.StatusCode))
     end
-
     error("No supported HTTP request function is available: " .. tostring(result))
 end
 
@@ -106,8 +99,7 @@ local downloaded = 0
 
 for _, path in ipairs(Files) do
     EnsureParentFolders(path)
-    local url = BaseURL .. path
-    local ok, contents = pcall(GetURL, url)
+    local ok, contents = pcall(GetURL, BaseURL .. path)
     if not ok or type(contents) ~= "string" or contents == "" then
         error("Blue Inhaler download failed for " .. path .. ": " .. tostring(contents))
     end
@@ -120,11 +112,8 @@ for _, path in ipairs(Files) do
     downloaded = downloaded + 1
 end
 
-local entryPath = Directory .. "/main.lua"
-local chunk, compileError = loadstring(readfile(entryPath), "main")
-if not chunk then
-    error("Blue Inhaler main.lua failed to compile: " .. tostring(compileError))
-end
+local chunk, compileError = loadstring(readfile(Directory .. "/main.lua"), "main")
+if not chunk then error("Blue Inhaler main.lua failed to compile: " .. tostring(compileError)) end
 
-print("[Blue Inhaler] Installed " .. tostring(downloaded) .. " files from GitHub")
+print("[Blue Inhaler] Downloaded " .. tostring(downloaded) .. " files from GitHub")
 return chunk({})
