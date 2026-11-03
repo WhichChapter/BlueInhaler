@@ -1,5 +1,5 @@
 --!nocheck
--- Catsix offline bootstrap. No CatVape server requests are made here.
+-- Blue Inhaler offline bootstrap. No CatVape server requests are made here.
 
 local Directory = "catsix"
 
