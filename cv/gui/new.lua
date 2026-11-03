@@ -895,7 +895,11 @@ do
 
     local function DownloadFile(FilePath: string, Callback: ((string) -> any)?)
         if not AssetExists(FilePath) then
-            error(`Catsix offline asset/dependency missing: ${FilePath}`)
+            if FilePath:sub(1, #AssetFolder) == AssetFolder then
+                -- Use embedded fallback artwork when optional local assets are absent.
+                return Callback and Callback() or ""
+            end
+            error(`Catsix offline dependency missing: ${FilePath}`)
         end
         return (Callback or readfile)(FilePath)
     end
