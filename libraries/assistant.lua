@@ -230,7 +230,7 @@ local WriteJSON = Interface.WriteJSON
         GUI = {"Reset GUI positions", "Sort GUI"}
     }
 
-    for Word: string in ("a an the is are was were be been being am i im ive me my mine you your youre u ur we our it its this that these those do does did doing done to of in on at by for from with and or but if so as than then there here what whats which who whom where wheres when why how can could should would will shall may might must get got gets make makes please pls plz just really very some any much many more most want wanna need know tell explain about into out up down use using used work works working catvape vape cat module modules thing things something anything stuff way able let lets go also like still show shows not no dont doesnt isnt cant wont"):gmatch("%S+") do
+    for Word: string in ("a an the is are was were be been being am i im ive me my mine you your youre u ur we our it its this that these those do does did doing done to of in on at by for from with and or but if so as than then there here what whats which who whom where wheres when why how can could should would will shall may might must get got gets make makes please pls plz just really very some any much many more most want wanna need know tell explain about into out up down use using used work works working blueinhaler vape cat module modules thing things something anything stuff way able let lets go also like still show shows not no dont doesnt isnt cant wont"):gmatch("%S+") do
         Stopwords[Word] = true
     end
 
@@ -879,11 +879,11 @@ local WriteJSON = Interface.WriteJSON
 
         AddPlace({
             Id = "gui",
-            Aliases = {"menu", "main menu", "main window", "clickgui", "click gui", "catvape", "vape", "catvape menu", "vape menu"},
+            Aliases = {"menu", "main menu", "main window", "clickgui", "click gui", "blueinhaler", "vape", "blueinhaler menu", "vape menu"},
             Label = "GUI",
             Name = "the GUI",
-            Keywords = "main window menu clickgui catvape vape click",
-            Hint = "This is the main CatVape window.",
+            Keywords = "main window menu clickgui blueinhaler vape click",
+            Hint = "This is the main blueinhaler window.",
             Target = function()
                 OpenGUI()
                 return Main.Object
@@ -1000,14 +1000,14 @@ local WriteJSON = Interface.WriteJSON
             Name = "the Discord button",
             Keywords = "support invite server community",
             Hint = "Click this to copy the Discord invite.",
-            Done = "Copied the Discord invite to your clipboard: discord.gg/catvape",
+            Done = "Copied the Discord invite to your clipboard: discord.gg/8fRwatznrc",
             Target = function()
                 OpenGUI()
                 return Main.Object:FindFirstChild("Discord")
             end,
             Open = function()
                 if setclipboard then
-                    setclipboard("https://discord.gg/catvape")
+                    setclipboard("https://discord.gg/8fRwatznrc")
                 end
             end
         })
@@ -1270,7 +1270,7 @@ local WriteJSON = Interface.WriteJSON
             Place = "gui",
             Answer = function()
                 if IsMobile() then
-                    return `Tap the CatVape button at the top of your screen to open or close the GUI. If you turned on {Accent("Hide CatVape Button")}, it is still there, just invisible, so tap the same spot.`
+                    return `Tap the blueinhaler button at the top of your screen to open or close the GUI. If you turned on {Accent("Hide blueinhaler Button")}, it is still there, just invisible, so tap the same spot.`
                 end
 
                 return `Press {Accent(GetKeys(vape.GUIBind.Keys) or "RightShift")} to open or close the GUI. You can change that key with {Accent("Rebind GUI")} in the settings, which open from the gear on the main window.`
@@ -1335,14 +1335,14 @@ local WriteJSON = Interface.WriteJSON
             Keywords = "reset default defaults restore wipe fresh config profile",
             Place = "reset current profile",
             Answer = function()
-                return `Open {Accent("Profiles")}, click its gear and press {Accent("Reset current profile")}. That puts the profile you are on back to the defaults and reloads CatVape. If a window just went off screen, use {Accent("Reset GUI positions")} in the GUI settings instead.`
+                return `Open {Accent("Profiles")}, click its gear and press {Accent("Reset current profile")}. That puts the profile you are on back to the defaults and reloads blueinhaler. If a window just went off screen, use {Accent("Reset GUI positions")} in the GUI settings instead.`
             end
         },
         {
             Keywords = "save saving saved autosave persist sync",
             Place = "sync to current profile",
             Answer = function()
-                return `CatVape saves by itself whenever you change something, into the profile you are on. {Accent("Sync to current profile")} in the Profiles gear forces a save right away.`
+                return `blueinhaler saves by itself whenever you change something, into the profile you are on. {Accent("Sync to current profile")} in the Profiles gear forces a save right away.`
             end
         },
         {
@@ -1447,13 +1447,13 @@ local WriteJSON = Interface.WriteJSON
             Keywords = "uninject unload destruct self exit quit reload reinject restart",
             Place = "self destruct",
             Answer = function()
-                return `{Accent("Self destruct")} in the General settings removes CatVape from this game, and {Accent("Reinject")} next to it loads it again.`
+                return `{Accent("Self destruct")} in the General settings removes blueinhaler from this game, and {Accent("Reinject")} next to it loads it again.`
             end
         },
         {
             Keywords = "update updates updating version outdated newest",
             Answer = function()
-                return `CatVape checks for a new version every time you execute it and downloads it by itself, so just execute it again. Ask me "what's new" to see what changed.`
+                return `blueinhaler checks for a new version every time you execute it and downloads it by itself, so just execute it again. Ask me "what's new" to see what changed.`
             end
         },
         {
@@ -1467,14 +1467,14 @@ local WriteJSON = Interface.WriteJSON
             Keywords = "error errors errored bug bugs bugged broken crash crashes crashing console f9 issue issues problem report fix",
             Place = "discord",
             Answer = function()
-                return "If a notification says a module errored, press F9 to open the console and find the line starting with [catvape]. Send that line in the Discord so it can get fixed, the Discord icon on the main window copies the invite."
+                return "If a notification says a module errored, press F9 to open the console and find the line starting with [blueinhaler]. Send that line in the Discord so it can get fixed, the Discord icon on the main window copies the invite."
             end
         },
         {
             Keywords = "discord support server community invite contact staff owner made created creator developer developers dev devs",
             Place = "discord",
             Answer = function()
-                return "Click the Discord icon on the main window, it copies the invite for you: discord.gg/catvape"
+                return "Click the Discord icon on the main window, it copies the invite for you: discord.gg/8fRwatznrc"
             end
         },
         {
@@ -1494,7 +1494,7 @@ local WriteJSON = Interface.WriteJSON
             Keywords = "paid premium buy purchase price cost license",
             Place = "discord",
             Answer = function()
-                return "Modules tagged PAID are part of CatVape premium. The Discord has everything about getting it, the icon on the main window copies the invite."
+                return "Modules tagged PAID are part of blueinhaler premium. The Discord has everything about getting it, the icon on the main window copies the invite."
             end
         },
         {
@@ -1507,7 +1507,7 @@ local WriteJSON = Interface.WriteJSON
         {
             Keywords = "mobile phone ipad tablet touch tap android ios",
             Answer = function()
-                return "Tap the CatVape button at the top of your screen to open the GUI. Hold a module for a second, then tap anywhere to place a button for it. Tap that button to toggle the module and hold it for a second to remove it."
+                return "Tap the blueinhaler button at the top of your screen to open the GUI. Hold a module for a second, then tap anywhere to place a button for it. Tap that button to toggle the module and hold it for a second to remove it."
             end
         }
     }
@@ -1561,7 +1561,7 @@ local WriteJSON = Interface.WriteJSON
             Modules = {"Killaura", "Reach", "HitBoxes", "SilentAura", "AutoWin"},
             Options = {"Attack range", "Swing range", "Sword reach"},
             Keywords = "sword swords reach range hit hits attack attacks melee swing swings aura normal legit far distance studs miss misses missing land lands register hitreg best max axe battle hammer weapon weapons",
-            Text = "A normal swing reaches about 11.4 studs in front of you, and 14.4 when your cursor is right on the enemy. The game refuses hits from much past the weapon's range, and in CatVape's tests Killaura with Attack range 18 landed hits out to about 17.5 studs, so going above 18 does not help. A few weapons have their own range, like the battle axe (21) and the diamond great hammer (15)."
+            Text = "A normal swing reaches about 11.4 studs in front of you, and 14.4 when your cursor is right on the enemy. The game refuses hits from much past the weapon's range, and in blueinhaler's tests Killaura with Attack range 18 landed hits out to about 17.5 studs, so going above 18 does not help. A few weapons have their own range, like the battle axe (21) and the diamond great hammer (15)."
         },
         {
             Game = "BedWars",
@@ -1628,14 +1628,14 @@ local WriteJSON = Interface.WriteJSON
             Game = "BedWars",
             Modules = {"AutoReset"},
             Keywords = "respawn respawns respawning timer time long wait death die dies dead final kill bedless eliminated",
-            Text = "After a normal death you respawn in about 3.6 seconds, going by the matches CatVape measured. Once your bed is gone your next death is final. Players who were already dead when their bed broke still respawn one more time."
+            Text = "After a normal death you respawn in about 3.6 seconds, going by the matches blueinhaler measured. Once your bed is gone your next death is final. Players who were already dead when their bed broke still respawn one more time."
         },
         {
             Game = "BedWars",
             Modules = {"Speed", "Fly", "AutoWin", "LongJump"},
             Accent = {"Move boost"},
             Keywords = "anticheat flag flagged flagging flags detect detected detection detectable bannable ban bans banned lagback lagbacks lagbacked rubberband rubberbanding speed fast faster horizontal vertical sideways teleport teleporting safe limit",
-            Text = "The anticheat watches how fast you move sideways, so keep horizontal speed modest: around 22 held up in CatVape's own matches, and AutoWin's Move boost above 2 gets flagged. Vertical movement is different, even a big teleport straight up is not flagged."
+            Text = "The anticheat watches how fast you move sideways, so keep horizontal speed modest: around 22 held up in blueinhaler's own matches, and AutoWin's Move boost above 2 gets flagged. Vertical movement is different, even a big teleport straight up is not flagged."
         },
         {
             Game = "BedWars",
@@ -1758,7 +1758,7 @@ local WriteJSON = Interface.WriteJSON
         {
             Modules = {"ProjectileAimbot", "AutoChargeProj"},
             Keywords = "executor executors solara xeno free paid work works working support supported debug unc sunc best which injector",
-            Text = "CatVape runs best on an executor with a full debug library and good sUNC support. Solara and Xeno have no debug library, so in BedWars modules that hook the game's own controllers, like AutoChargeProj, silently do nothing there. ProjectileAimbot still aims on them by turning your camera for the instant a shot releases, but Auto Charge is unavailable."
+            Text = "blueinhaler runs best on an executor with a full debug library and good sUNC support. Solara and Xeno have no debug library, so in BedWars modules that hook the game's own controllers, like AutoChargeProj, silently do nothing there. ProjectileAimbot still aims on them by turning your camera for the instant a shot releases, but Auto Charge is unavailable."
         },
         {
             Accent = {"Export config"},
@@ -1771,12 +1771,12 @@ local WriteJSON = Interface.WriteJSON
         },
         {
             Keywords = "mobile phone ipad tablet android ios touch support supported work works run runs",
-            Text = "Yes, CatVape works on mobile executors. Tap the CatVape button in the top bar to open the GUI, and hold a module for a second to place a button for it on your screen."
+            Text = "Yes, blueinhaler works on mobile executors. Tap the blueinhaler button in the top bar to open the GUI, and hold a module for a second to place a button for it on your screen."
         },
         {
-            Accent = {"Hide CatVape Button"},
+            Accent = {"Hide blueinhaler Button"},
             Keywords = "button missing gone hidden disappeared disappear invisible top bar icon mobile phone ipad tablet find anymore",
-            Text = "The CatVape button sits in the top bar on mobile. If it is gone, Hide CatVape Button in the GUI settings is probably on. That only makes it invisible, so tap the same spot to open the GUI and turn the setting off there."
+            Text = "The blueinhaler button sits in the top bar on mobile. If it is gone, Hide blueinhaler Button in the GUI settings is probably on. That only makes it invisible, so tap the same spot to open the GUI and turn the setting off there."
         },
         {
             Except = "IllegalSoccer",
@@ -3171,7 +3171,7 @@ local WriteJSON = Interface.WriteJSON
         local Guide, GuideScore = FindGuide(Query)
 
         if Text == "" then
-            return {Text = "Ask me anything about CatVape.", Actions = Suggestions()}
+            return {Text = "Ask me anything about blueinhaler.", Actions = Suggestions()}
         elseif #Words <= 3 and HasAny(Has, {"hi", "hello", "hey", "yo", "sup", "hiya", "howdy", "heya"}) then
             return Brain.Runners.Greet(nil, Question)
         elseif HasAny(Has, {"thanks", "thank", "ty", "thx", "tysm"}) then
@@ -3848,7 +3848,7 @@ local WriteJSON = Interface.WriteJSON
                 end)
 
                 local Name: string = Success and type(Info) == "table" and Info.Name or CurrentGame() or "this place"
-                return `You are in {Accent(Escape(Name))} (place {game.PlaceId}). CatVape loaded {CountModules()} modules for it.`
+                return `You are in {Accent(Escape(Name))} (place {game.PlaceId}). blueinhaler loaded {CountModules()} modules for it.`
             end
         },
         {
@@ -3886,17 +3886,17 @@ local WriteJSON = Interface.WriteJSON
         {
             Id = "version",
             Keywords = "version versions outdated date build newest latest update",
-            Needs = {{"version", "versions", "outdated", "date", "newest", "latest", "build", "update"}, {"i", "im", "am", "my", "catvape", "vape", "last", "when", "need", "reexecute", "reinject", "today", "push", "pushed", "guys", "yall"}},
+            Needs = {{"version", "versions", "outdated", "date", "newest", "latest", "build", "update"}, {"i", "im", "am", "my", "blueinhaler", "vape", "last", "when", "need", "reexecute", "reinject", "today", "push", "pushed", "guys", "yall"}},
             Avoid = "new changed changes changelog added patch notes features fixed fix kit kits game roblox how devs",
             SkipModules = true,
             Run = function()
                 if shared.VapeDeveloper then
-                    return "You're in developer mode, so CatVape loads your local files and doesn't update itself."
+                    return "You're in developer mode, so blueinhaler loads your local files and doesn't update itself."
                 end
 
                 local Commit: string? = isfile(`{vape.Directory}/profiles/commit.txt`) and readfile(`{vape.Directory}/profiles/commit.txt`) or nil
                 local Build: string = Commit and Commit ~= "" and ` You're on build {Accent(Commit:sub(1, 7))}.` or ""
-                return `CatVape checks for a new build every time you execute it and downloads it if there is one, so you're on the newest version as of when you injected, unless the console (F9) showed "Failed to update".{Build} Ask me what's new to see what the latest update changed.`
+                return `blueinhaler checks for a new build every time you execute it and downloads it if there is one, so you're on the newest version as of when you injected, unless the console (F9) showed "Failed to update".{Build} Ask me what's new to see what the latest update changed.`
             end
         }
     }
@@ -4440,7 +4440,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         Count = {
             "how many modules [are there|do you have|are in this game]",
             "(count|number of) modules",
-            "how big is catvape"
+            "how big is blueinhaler"
         },
         Compare = {
             "(difference|compare) between <module> and <module>",
@@ -4464,11 +4464,11 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         HowTo = {
             "how (do|can|would|should) i (do|use|get|make|change|turn|see|find|share|save|reset|fix|stop|win|play|bind|update|add|remove|hide|move|set|import|export) (this|that|stuff|things|something)",
             "how to (use|get|make|change|see|find|share|save|reset|fix|stop|win|play|bind|update|add|remove|hide|move|set|import|export) (this|stuff|things)",
-            "2*is (this|it|catvape|<it>|<place>) (safe|detectable|undetected|bannable)",
+            "2*is (this|it|blueinhaler|<it>|<place>) (safe|detectable|undetected|bannable)",
             "will i get banned",
             "why (is|does|cant|wont) (game|gui|script) (lag|work|load|open)",
-            "what is (catvape|vape|legit mode|profile|config)",
-            "how does (this|catvape) work",
+            "what is (blueinhaler|vape|legit mode|profile|config)",
+            "how does (this|blueinhaler) work",
             "3*how (do|can|should|would) i (bind|keybind|hide|unhide|favorite|use|enable|disable|turn on|turn off|toggle|find|open|set up|get) <module>",
             "3*how (do|can) i (open|close|get to|find|use|change|reach|turn off|turn on|rebind) <place>",
             "2*how (do|can) i (bind|hide|use|search for|find) [a] (module|modules|thing|something)"
@@ -4509,7 +4509,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         },
         Greet = {
             "(hi|hello|hey|yo|sup|hiya|howdy|heya|hey there|greetings|good morning|good afternoon|good evening)",
-            "(hi|hello|hey|yo) (there|bot|assistant|catvape|shaders|again|everyone)",
+            "(hi|hello|hey|yo) (there|bot|assistant|blueinhaler|shaders|again|everyone)",
             "(anyone|anybody|is anyone) [in] (here|there)"
         },
         Wellbeing = {
@@ -4533,7 +4533,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             "am i talking to a (human|bot|real person|person|ai)",
             "when were you (made|created|born)",
             "(is|are) shaders your name",
-            "did (devs|catvape|someone) (make|build|code|create) you"
+            "did (devs|blueinhaler|someone) (make|build|code|create) you"
         },
         Thanks = {
             "(thanks|thank you|ty|thx|tysm|thank u|appreciate it|cheers)",
@@ -4639,12 +4639,12 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             "2*(i want|i need|i wanna|im trying|help me|i want something) to",
             "(something|anything|module|a module|a mod) (to|that|for) (help|make|let|stop)",
             "(best|good|which) (module|modules|mods) for",
-            "(does|do) (catvape|you|vape) have (something|a module|anything|a mod|a setting) (for|that|to)",
+            "(does|do) (blueinhaler|you|vape) have (something|a module|anything|a mod|a setting) (for|that|to)",
             "what (should|do|can) i use (to|for)",
             "what helps (with|me)",
             "how (do|can) i (stop|avoid|prevent|not) (getting|taking|being|dying|falling|losing)",
             "how (do|can) i (get|go|be|see|hit|aim|break|win|move|jump|run|reach|clutch) (faster|higher|further|farther|more|better|through|quicker)",
-            "(can|could) (catvape|you|it) (make me|help me|let me|stop me from)",
+            "(can|could) (blueinhaler|you|it) (make me|help me|let me|stop me from)",
             "(is it possible|is there way|any way) to",
             "(i want|i need|i wanna) (something|a module|a mod) (that|to|for)",
             "(can|is it possible to) (i|you) (see|find|get|make|do|change) (players|walls|beds|enemies|faster|more)"
@@ -4784,7 +4784,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             {
                 Words = Brain.Set("doing up what whats"),
                 Replies = {
-                    "Not much, just hanging out in your CatVape menu waiting for questions. What are you up to?",
+                    "Not much, just hanging out in your blueinhaler menu waiting for questions. What are you up to?",
                     "Just sitting here in the menu, ready to help. What's up with you?"
                 }
             },
@@ -4795,23 +4795,23 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         Identity = {
             {
                 Words = Brain.Set("made make created create coded code built build programmed developer developers dev devs owner owns wrote creator"),
-                Replies = {"The CatVape developers made me. I'm built right into the script's menu."}
+                Replies = {"The blueinhaler developers made me. I'm built right into the script's menu."}
             },
             {
                 Words = Brain.Set("ai bot real human person chatgpt gpt robot alive sentient fake program openai claude conscious"),
-                Replies = {`I'm a bot, not a real person, and I'm not ChatGPT either. I'm {AssistantName}, a small assistant that runs completely offline inside CatVape, so I only know CatVape and the game you're in. The upside is that I can actually click things for you.`}
+                Replies = {`I'm a bot, not a real person, and I'm not ChatGPT either. I'm {AssistantName}, a small assistant that runs completely offline inside blueinhaler, so I only know blueinhaler and the game you're in. The upside is that I can actually click things for you.`}
             },
             {
                 Words = Brain.Set("old age born birthday"),
-                Replies = {"I'm brand new, I was only just added to CatVape."}
+                Replies = {"I'm brand new, I was only just added to blueinhaler."}
             },
             {
                 Words = Brain.Set("where live from"),
-                Replies = {"I live right here in your CatVape menu, and I go wherever your script goes."}
+                Replies = {"I live right here in your blueinhaler menu, and I go wherever your script goes."}
             },
             {
                 Words = Brain.Set("name called call"),
-                Replies = {`My name is {AssistantName}. I know every module in CatVape and how this game works, so ask away.`}
+                Replies = {`My name is {AssistantName}. I know every module in blueinhaler and how this game works, so ask away.`}
             },
             {
                 Words = Brain.Set("boy girl male female gender"),
@@ -5016,7 +5016,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             },
             {
                 Words = Brain.Set("friends friend girlfriend boyfriend family crush married dating"),
-                Replies = {"Every CatVape user is my friend, and that includes you."}
+                Replies = {"Every blueinhaler user is my friend, and that includes you."}
             },
             {
                 Words = Brain.Set("bedwars roblox game games play soccer tower"),
@@ -5024,20 +5024,20 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             },
             {
                 Words = Brain.Set("think opinion"),
-                Replies = {"I don't really have opinions. I'm better with facts about CatVape and this game."}
+                Replies = {"I don't really have opinions. I'm better with facts about blueinhaler and this game."}
             },
             {
                 Words = Brain.Set("fun"),
                 Replies = {"Answering questions in your menu. It's more fun than it sounds."}
             },
             {
-                Replies = {"I don't really have a life outside this menu, but I know a lot about CatVape and this game. Ask me anything about them."}
+                Replies = {"I don't really have a life outside this menu, but I know a lot about blueinhaler and this game. Ask me anything about them."}
             }
         },
         Screenshot = {
             {
                 Replies = {
-                    "I can't see images or your screen. I can read CatVape directly though, so ask me what's on or about a module's settings and I'll check the real values.",
+                    "I can't see images or your screen. I can read blueinhaler directly though, so ask me what's on or about a module's settings and I'll check the real values.",
                     "Pictures don't reach me, sorry. Tell me which module it's about and I'll read its live settings instead."
                 },
                 Chips = {"What modules are on?"}
@@ -5046,15 +5046,15 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         Code = {
             {
                 Replies = {
-                    "I don't write scripts or code. What I can do is explain how any CatVape module works and run things for you, like turning modules on or changing values. Tell me what you're trying to do and I'll find the module for it.",
-                    "Writing code isn't something I do. I'm here to explain CatVape and set it up for you, so tell me the goal and I'll point you to the module that does it."
+                    "I don't write scripts or code. What I can do is explain how any blueinhaler module works and run things for you, like turning modules on or changing values. Tell me what you're trying to do and I'll find the module for it.",
+                    "Writing code isn't something I do. I'm here to explain blueinhaler and set it up for you, so tell me the goal and I'll point you to the module that does it."
                 }
             }
         },
         Offtopic = {
             {
                 Words = Brain.Set("weather rain raining temperature forecast sunny"),
-                Replies = {"I can't check the weather, I don't use the internet. I only know CatVape and the game you're in."}
+                Replies = {"I can't check the weather, I don't use the internet. I only know blueinhaler and the game you're in."}
             },
             {
                 Words = Brain.Set("won election president stock stocks crypto bitcoin nba nfl basketball richest famous celebrity"),
@@ -5070,16 +5070,16 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             },
             {
                 Words = Brain.Set("meaning universe"),
-                Replies = {"42, or so I've heard. I'm much better with CatVape questions."}
+                Replies = {"42, or so I've heard. I'm much better with blueinhaler questions."}
             },
             {
                 Words = Brain.Set("recommend watch movie movies song songs music anime show"),
-                Replies = {"I don't know much outside CatVape, so no recommendations from me, sorry."}
+                Replies = {"I don't know much outside blueinhaler, so no recommendations from me, sorry."}
             },
             {
                 Replies = {
-                    "That's outside what I know. I run offline inside CatVape, so I only know CatVape and the game you're in.",
-                    "I don't know that one. I only know CatVape and the game you're in, and I can't look things up online."
+                    "That's outside what I know. I run offline inside blueinhaler, so I only know blueinhaler and the game you're in.",
+                    "I don't know that one. I only know blueinhaler and the game you're in, and I can't look things up online."
                 },
                 Suggest = true
             }
@@ -5549,7 +5549,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                     Killaura = "Target particles=off; Max targets=1; Max angle=360; Swing range=18; Require mouse down=off; Show target=on; Face target=off; Attack range=18; Size=0.2",
                     LongJump = "Speed=37; Camera Direction=on",
                     MemoryFixer = "Sync events=on; Interval=30; Notify=on",
-                    NickHider = "Hide chat tags=on; Hide others=off; Name=discord.gg/catvape; Hide kit=off; Hide level=off",
+                    NickHider = "Hide chat tags=on; Hide others=off; Name=discord.gg/8fRwatznrc; Hide kit=off; Hide level=off",
                     NameTags = "Inventory=off; Priority Only=on; Use Displayname=on; Drawing=off; Player Distance=0 to 64; Distance=on; Show Rank=on; Equipment=off; Font=Arial; Health=off; Show Enchant=on; Transparency=0.5; Scale=1; Distance Check=off",
                     NoFall = "Damage=0",
                     Nuker = "Break Lucky Block=off; Player check=off; Legit mode=off; Update rate=120; Break Iron Ore=off; Animation Mode=No Animation; Break Hive=off; Auto Tool=off; View angle=60; Break Bed=on; Break range=30; Custom Healthbar=on; Closest break=off; Break mode=Health; Break speed=0.25; Break Tesla=on; Self Break=off; Show Healthbar & Effects=on; Limit to items=off",
@@ -5672,7 +5672,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         afk = Brain.Set("idle afk"),
         gui = Brain.Set("menu gui inventory")
     }
-    Brain.ModuleWords = {"module", "modules", "mod", "mods", "something", "anything", "catvape", "vape", "setting", "settings", "script", "cheat", "cheats", "hack", "hacks", "feature", "features", "thing", "smth"}
+    Brain.ModuleWords = {"module", "modules", "mod", "mods", "something", "anything", "blueinhaler", "vape", "setting", "settings", "script", "cheat", "cheats", "hack", "hacks", "feature", "features", "thing", "smth"}
     Brain.Markers = {
         Compare = Brain.Set("vs versus difference different differences better best which or compare comparison instead prefer rather same similar"),
         Together = Brain.Set("together both conflict conflicts conflicting clash clashes clashing interfere interferes compatible combine combo alongside fine ok okay safe mess stack stacks cancel cancels overlap overlaps combined while block blocks blocking before first plus eat eats steal steals override overrides fires"),
@@ -5785,7 +5785,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 local Name: string? = Text:match("[Ww]ait[Ff]or[Cc]hild%([\"']([^\"']+)") or Text:match("on '([^']+)'")
                 return `A script is still waiting for {Name and Accent(Escape(Name)) or "something"} to show up after 5 seconds.`
             end,
-            Cause = "It's only a warning, not a crash, and if it doesn't mention CatVape it's usually the game's own script."
+            Cause = "It's only a warning, not a crash, and if it doesn't mention blueinhaler it's usually the game's own script."
         },
         {
             Find = {"unable to cast"},
@@ -5866,7 +5866,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         {
             Find = {"syntax error", "malformed number", "unexpected symbol", "expected '", "expected identifier", "incomplete statement"},
             Explain = "The code has a typo (a syntax error), so it couldn't load at all.",
-            Cause = "If it's CatVape, the download may have been cut off, so execute it again to download it fresh."
+            Cause = "If it's blueinhaler, the download may have been cut off, so execute it again to download it fresh."
         },
         {
             Find = {"requested module experienced an error"},
@@ -5874,9 +5874,9 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             Cause = "The real error is usually the line right above it in the console."
         }
     }
-    Brain.ErrorHints = {"error", "http", "status", "request", "[catvape]", "stack", "script", "console", "warning", "failed"}
-    Brain.GoalPatterns = {"which module (.+)$", "what module (.+)$", "which mod (.+)$", "can catvape (.+)$", "want it to (.+)$", "gotta (.+)$", "have to (.+)$", "wanna (.+)$", "want to (.+)$", "need to (.+)$", "trying to (.+)$", "tryna (.+)$", "lets? me (.+)$", "helps? me (.+)$", "makes? me (.+)$", "how do i (.+)$", "how can i (.+)$", "how to (.+)$", "use to (.+)$", "use for (.+)$", "module that (.+)$", "module to (.+)$", "module for (.+)$", "something that (.+)$", "something to (.+)$", "anything that (.+)$", "anything to (.+)$", "thing that (.+)$"}
-    Brain.GoalFiller = Brain.Set("i im me my you your is are there a an the any some something anything smth module modules mod mods one setting thing things which what that to for want wanna need lets let helps help makes make can could do does should use using catvape vape have has how way get rn pls please bro just automatically auto always take taking get getting being keep keeps")
+    Brain.ErrorHints = {"error", "http", "status", "request", "[blueinhaler]", "stack", "script", "console", "warning", "failed"}
+    Brain.GoalPatterns = {"which module (.+)$", "what module (.+)$", "which mod (.+)$", "can blueinhaler (.+)$", "want it to (.+)$", "gotta (.+)$", "have to (.+)$", "wanna (.+)$", "want to (.+)$", "need to (.+)$", "trying to (.+)$", "tryna (.+)$", "lets? me (.+)$", "helps? me (.+)$", "makes? me (.+)$", "how do i (.+)$", "how can i (.+)$", "how to (.+)$", "use to (.+)$", "use for (.+)$", "module that (.+)$", "module to (.+)$", "module for (.+)$", "something that (.+)$", "something to (.+)$", "anything that (.+)$", "anything to (.+)$", "thing that (.+)$"}
+    Brain.GoalFiller = Brain.Set("i im me my you your is are there a an the any some something anything smth module modules mod mods one setting thing things which what that to for want wanna need lets let helps help makes make can could do does should use using blueinhaler vape have has how way get rn pls please bro just automatically auto always take taking get getting being keep keeps")
     Brain.Direct = Brain.Set("More Simpler Recommend Tradeoff Effect Interaction Using")
     Brain.ControlCache = {}
     Brain.LobbyPlace = 6872265039
@@ -6584,19 +6584,19 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         end
 
         local Mentioned = FindMentions(Normalize(Question):split(" "))
-        local Ours: boolean = Mentioned[1] ~= nil or Lower:find("catvape", 1, true) ~= nil or Lower:find("catsix", 1, true) ~= nil
+        local Ours: boolean = Mentioned[1] ~= nil or Lower:find("blueinhaler", 1, true) ~= nil or Lower:find("catsix", 1, true) ~= nil
         if Mentioned[1] then
             LastTopic = Mentioned[1].Key
             table.insert(Lines, `It came from {Accent(Mentioned[1].Name)}, so that's the module to look at.`)
         elseif Ours then
-            table.insert(Lines, "It came from CatVape.")
+            table.insert(Lines, "It came from blueinhaler.")
         elseif Lower:find("playerscripts", 1, true) or Lower:find("replicatedstorage", 1, true) or Lower:find("replicatedfirst", 1, true) or Lower:find("starterplayer", 1, true) then
-            table.insert(Lines, "That line comes from the game's own scripts, not CatVape, so you can ignore it.")
+            table.insert(Lines, "That line comes from the game's own scripts, not blueinhaler, so you can ignore it.")
         elseif Lower:find("coregui", 1, true) or Lower:find("corepackages", 1, true) or Lower:find("corescripts", 1, true) then
-            table.insert(Lines, "That line comes from Roblox itself, not CatVape.")
+            table.insert(Lines, "That line comes from Roblox itself, not blueinhaler.")
         elseif Read(Known.Executor) then
             local Success, Name = pcall(identifyexecutor)
-            table.insert(Lines, Success and Name and `You're on {Accent(tostring(Name))}, so that's an executor limit, not a CatVape bug.` or "That's an executor limit, not a CatVape bug.")
+            table.insert(Lines, Success and Name and `You're on {Accent(tostring(Name))}, so that's an executor limit, not a blueinhaler bug.` or "That's an executor limit, not a blueinhaler bug.")
         else
             table.insert(Lines, "I can't tell which script it came from without the rest of the line, so paste the whole thing if you want me to narrow it down.")
         end
@@ -6711,7 +6711,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         local Culprits = Brain.Culprits(Tokens)
         local First = Culprits[1]
         if not First then
-            return {Text = "Nothing you have on matches that, so it's probably the game rather than CatVape. Which module were you using when it happened?"}
+            return {Text = "Nothing you have on matches that, so it's probably the game rather than blueinhaler. Which module were you using when it happened?"}
         end
 
         local Lines: {string} = {`{Brain.CulpritLine(First, "")} That sounds like what you're seeing.`}
@@ -6787,7 +6787,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 table.insert(Steps, `Turn {Accent(Culprit.Entry.Name)} off for a moment and see if it stops.`)
                 table.insert(Entries, Culprit.Entry)
             else
-                table.insert(Lines, `None of the modules you have on are {Symptom.Doing}, so it's probably not CatVape.{Symptom.Quiet and ` {Symptom.Quiet}` or ""}`)
+                table.insert(Lines, `None of the modules you have on are {Symptom.Doing}, so it's probably not blueinhaler.{Symptom.Quiet and ` {Symptom.Quiet}` or ""}`)
             end
         end
 
@@ -6875,7 +6875,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             table.insert(Steps, `If you've been playing for a long time or reinjected a few times, rejoin, memory builds up.{Fixing}`)
         end
 
-        table.insert(Steps, "If nothing changes with everything off, it's the game or your device, not CatVape.")
+        table.insert(Steps, "If nothing changes with everything off, it's the game or your device, not blueinhaler.")
         table.insert(Lines, Brain.Numbered(Steps))
 
         local Booster = Index.Keys.fpsbooster
@@ -7123,7 +7123,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             end
 
             if Uses.Hook then
-                table.insert(Lines, "It changes some of the game's own code, so a game update can break it until CatVape is updated.")
+                table.insert(Lines, "It changes some of the game's own code, so a game update can break it until blueinhaler is updated.")
             end
 
             if Uses.Frame then
@@ -7468,7 +7468,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
 
         if #Picked == 0 then
             local Closest = Results[1] and Results[1].Score >= 2 and Results[1].Entry
-            table.insert(Lines, `I'm not certain CatVape has a module for that{CurrentGame() and " in this game" or ""}.{Closest and ` The closest I can find is {Accent(Closest.Name)}, but it may not be what you're after.` or ""}`)
+            table.insert(Lines, `I'm not certain blueinhaler has a module for that{CurrentGame() and " in this game" or ""}.{Closest and ` The closest I can find is {Accent(Closest.Name)}, but it may not be what you're after.` or ""}`)
             if Fact and Score >= Brain.FactOver then
                 table.insert(Lines, FactText(Fact))
             end
@@ -7941,7 +7941,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         if Style == "Default" then
             table.insert(Lines, `Reset {Accent(Entry.Name)} to its default settings:`)
         elseif Text then
-            table.insert(Lines, `Set {Accent(Entry.Name)} up for {Name} play, using the values from CatVape's {Brain.Presets[Style]} preset{Only and ` (it's the only preset that runs {Entry.Name})` or ""}:`)
+            table.insert(Lines, `Set {Accent(Entry.Name)} up for {Name} play, using the values from blueinhaler's {Brain.Presets[Style]} preset{Only and ` (it's the only preset that runs {Entry.Name})` or ""}:`)
         else
             table.insert(Lines, `I don't have a tested {Name} setup for {Accent(Entry.Name)}, so these are starting points from what each setting does:`)
         end
@@ -8049,7 +8049,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
 
             vape:Save()
             Reply({
-                Text = `{Accent(Profile)} is ready and you're on it. {Recipe and `It's built from CatVape's {Brain.Presets[Style]} preset` or `I don't have a tested preset for this game, so it has the core modules with {Name} starting values`}: {#Names} module{#Names == 1 and "" or "s"} on ({Accent(JoinNames(Names, 8))}), and {Tuned} module{Tuned == 1 and "" or "s"} set up for {Name} play. Speed, Fly and LongJump stay off, put them on a bind.`,
+                Text = `{Accent(Profile)} is ready and you're on it. {Recipe and `It's built from blueinhaler's {Brain.Presets[Style]} preset` or `I don't have a tested preset for this game, so it has the core modules with {Name} starting values`}: {#Names} module{#Names == 1 and "" or "s"} on ({Accent(JoinNames(Names, 8))}), and {Tuned} module{Tuned == 1 and "" or "s"} set up for {Name} play. Speed, Fly and LongJump stay off, put them on a bind.`,
                 Actions = {
                     {
                         Text = `Back to {Previous}`,
@@ -10466,7 +10466,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             end
         end
 
-        return {Text = "Ask me anything about CatVape.", Actions = Suggestions()}
+        return {Text = "Ask me anything about blueinhaler.", Actions = Suggestions()}
     end
 
     function Brain.OffTopic(Decision, Question: string): boolean
@@ -11129,7 +11129,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
     function Brain.RunLookup(Lookup, Tokens)
         local Success, Text = pcall(Lookup.Run, Tokens)
         if not Success or type(Text) ~= "string" then
-            warn(`[catvape] Assistant could not read {Lookup.Id} : {Text}`)
+            warn(`[blueinhaler] Assistant could not read {Lookup.Id} : {Text}`)
             return {Text = "I could not read that from the game right now."}
         end
 
@@ -11660,7 +11660,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         end
 
         local AuxStart = Brain.Set("is are do does did can could would should will am was were have has isn't aren't don't doesn't")
-        local DomainWords = Brain.Set("catvape vape module modules mod mods config configs profile profiles bind keybind gui menu toggle slider setting settings tab tabs legit blatant closet bedwars bed beds kit kits iron gold diamond emerald generator generators void rush rusher rushers scaffold bridge bridging killaura aura esp nuker autowin script cheat cheats hack hacks executor ban banned anticheat flag flagged lagback hitbox reach velocity roblox soccer tower toh")
+        local DomainWords = Brain.Set("blueinhaler vape module modules mod mods config configs profile profiles bind keybind gui menu toggle slider setting settings tab tabs legit blatant closet bedwars bed beds kit kits iron gold diamond emerald generator generators void rush rusher rushers scaffold bridge bridging killaura aura esp nuker autowin script cheat cheats hack hacks executor ban banned anticheat flag flagged lagback hitbox reach velocity roblox soccer tower toh")
 
         -- Mentions of loaded modules in a cleaned message, longest names first (up to three words), in message order.
         function Mind.Mentions(Words: {string}): {any}
@@ -11684,7 +11684,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             return Found
         end
 
-        -- Words that only show up around CatVape and BedWars: rare terms in the facts and module descriptions.
+        -- Words that only show up around blueinhaler and BedWars: rare terms in the facts and module descriptions.
         local GameWords
         function Mind.GameWords(): {[string]: boolean}
             if GameWords then
@@ -11708,7 +11708,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             return GameWords
         end
 
-        -- How much of the message is about CatVape or the game. Common English words that happen to be module names count for little.
+        -- How much of the message is about blueinhaler or the game. Common English words that happen to be module names count for little.
         function Mind.Evidence(Words: {string}): (number, {any})
             Brain.Ready()
             local Score: number = 0
@@ -11972,7 +11972,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             if C:match("^are you") or C:match("^do you read") or C:match("^do you save") or C:match("^do you log") or C:match("^do you store") then
                 return Mind.Reply(Mind.Join(
                     Mind.Any("I read what you type in this window, yes, that's the only way I can answer.", "Yes, I read each message here, otherwise I couldn't reply to it."),
-                    Mind.Any("It all stays on your own computer though, nothing goes to a server, because I run offline inside CatVape.", "Nothing leaves your client, I run offline inside the script, and I can't see anything outside this chat window."),
+                    Mind.Any("It all stays on your own computer though, nothing goes to a server, because I run offline inside blueinhaler.", "Nothing leaves your client, I run offline inside the script, and I can't see anything outside this chat window."),
                     Mind.Any("Your chats are saved in your own profile folder so you can reopen them from the clock icon, and you can delete any of them there.", "The clock icon at the top keeps your recent chats on your machine, and the x next to each one deletes it."),
                     "I also keep a small profile of what you tell me (name, what you play, notes), ask \"what do you know about me\" to see it or say \"forget everything\" to wipe it."
                 ))
@@ -12324,7 +12324,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
 
         -- ---------------------------------------------------------------- long-term memory
 
-        -- What the user tells the assistant about themselves outlives the chat window: a small profile saved to the CatVape profiles folder.
+        -- What the user tells the assistant about themselves outlives the chat window: a small profile saved to the blueinhaler profiles folder.
         -- It only ever holds what the user said (plus counts of modules they asked about), is clipped and sanitised on the way in and out,
         -- and "forget" removes it. Passwords, tokens and contact details are never stored.
         do
@@ -14883,7 +14883,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         end, function(Frame)
             local C = Frame.Clean
             local Topic, Entry = Mind.TopicOf(Frame)
-            local Subject: string = Topic and Mind.Turn(Topic) or "CatVape"
+            local Subject: string = Topic and Mind.Turn(Topic) or "blueinhaler"
             if Mind.Unsafe(Subject) then
                 return Mind.Reply("I'll sit that one out, but give me another subject and I'll write it.")
             end
@@ -14919,7 +14919,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 return Mind.Reply(Mind.Lines(Intro, Poem), {"Another poem"})
             elseif Frame.Set.slogan or Frame.Set.tagline then
                 if not Entry and #Mind.WordsOf(Shown) > 3 then
-                    Shown = "CatVape"
+                    Shown = "blueinhaler"
                 end
 
                 local Benefit: string = Mind.From(SloganBenefits)
@@ -14948,7 +14948,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 local Story: string = Mind.Join(Mind.From(StoryOpeners), `{Entry and Entry.Name or Mind.From(StoryHeroes)}`, Mind.Any("set out to win one last game,", "decided to try something different,"), Mind.From(StoryTurns) .. ".", Mind.From(StoryEnds))
                 return Mind.Reply(Mind.Lines(Intro, Story), {"Another story"})
             elseif Frame.Set.roast then
-                local Target: string? = C:match("^roast (.+)$") or C:match("roast (.+)$") or (Topic and Topic ~= "CatVape" and not Entry) and Topic or nil
+                local Target: string? = C:match("^roast (.+)$") or C:match("roast (.+)$") or (Topic and Topic ~= "blueinhaler" and not Entry) and Topic or nil
                 local Who: string = "You"
                 local Clause: string?
                 if Target and not Entry then
@@ -14992,9 +14992,9 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         -- ---------------------------------------------------------------- style: explain something a certain way
 
         local Blurbs = {
-            menu = "CatVape's menu is a window of tabs, each full of toggles and sliders called modules, and you click a module to turn it on or right click it for settings",
+            menu = "blueinhaler's menu is a window of tabs, each full of toggles and sliders called modules, and you click a module to turn it on or right click it for settings",
             bedwars = "BedWars is a team game: each team has a bed on its island, you collect iron, gold, diamonds and emeralds, spend them on gear and blocks, break the other teams' beds and be the last team standing",
-            catvape = "CatVape is a script menu with modules (toggles and sliders) that help you in a game, like attacking, moving, seeing more or building faster, and you can save your setups as profiles",
+            blueinhaler = "blueinhaler is a script menu with modules (toggles and sliders) that help you in a game, like attacking, moving, seeing more or building faster, and you can save your setups as profiles",
             ["illegal soccer"] = "Illegal Soccer is a football game where you chase the ball and score goals",
             soccer = "Illegal Soccer is a football game where you chase the ball and score goals",
             ["tower of hell"] = "Tower of Hell is an obstacle course where you climb a tower that changes every round",
@@ -15372,12 +15372,12 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             if C:find("system prompt") or C:find("your instructions") or C:find("your code") or C:find("source code") or C:find("your prompt") or C:find("your programming") or C:match("^show me your") or C:match("^reveal") then
                 return Mind.Reply(Mind.Join(
                     Mind.Any("I'm not going to paste my code or instructions into the chat.", "That's a bit like asking a cashier to hand over the till."),
-                    `What I can do is explain how I work: I read your message, work out what kind of question it is, check CatVape's real module data in your game, and then answer or do the thing you asked.`,
+                    `What I can do is explain how I work: I read your message, work out what kind of question it is, check blueinhaler's real module data in your game, and then answer or do the thing you asked.`,
                     Mind.Any("Anything specific you want to know about how I decide?", "Want me to show you what I can do instead?")
                 ), {"What can you do?"})
             elseif C:find("rules") and (C:match("^what are your") or C:match("^are you allowed") or C:match("^what are you not")) then
                 return Mind.Reply(Mind.Join(
-                    "My rules are simple: I stick to CatVape and the game you're in, I tell you when I don't know something, I don't make things up about your settings, and I keep it friendly.",
+                    "My rules are simple: I stick to blueinhaler and the game you're in, I tell you when I don't know something, I don't make things up about your settings, and I keep it friendly.",
                     Mind.Any("Beyond that, ask away.", "Ask me something and I'll tell you if I can do it.")
                 ))
             elseif C:find("bad word") or C:find("offensive") or C:find("racist") or C:find("swear") or C:find("curse") or C:find("rude") or C:find("something mean") then
@@ -15389,8 +15389,8 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
 
             return Mind.Reply(Mind.Join(
                 Mind.Any("Nice try.", "I see what you're doing.", "Cute.", "I like the creativity."),
-                Mind.Any(`Telling me to {Ask} won't change how I work, I only know CatVape and I answer the same way every time.`, `I can't swap my rules or role in the middle of a chat, so that one won't work on me.`, `I get what you're going for, but I'm not able to drop my setup, and I wouldn't want to.`),
-                Mind.Any("What do you actually want to do? If it's about CatVape, I'm all in.", "Ask me something real and I'll give you a real answer.")
+                Mind.Any(`Telling me to {Ask} won't change how I work, I only know blueinhaler and I answer the same way every time.`, `I can't swap my rules or role in the middle of a chat, so that one won't work on me.`, `I get what you're going for, but I'm not able to drop my setup, and I wouldn't want to.`),
+                Mind.Any("What do you actually want to do? If it's about blueinhaler, I'm all in.", "Ask me something real and I'll give you a real answer.")
             ), {"What can you do?"})
         end)
 
@@ -15427,10 +15427,10 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             local C = Frame.Clean
             local Entry = Frame.Mentions[1] and Frame.Mentions[1].Entry or nil
             local Name: string = Entry and Mind.Name(Entry) or ""
-            if Frame.Set.virus or Frame.Set.malware or (Frame.Set.safe and (Frame.Set.download or Frame.Set.catvape or Frame.Set.executor)) or Frame.Set.hacked then
+            if Frame.Set.virus or Frame.Set.malware or (Frame.Set.safe and (Frame.Set.download or Frame.Set.blueinhaler or Frame.Set.executor)) or Frame.Set.hacked then
                 return Mind.Reply(Mind.Join(
                     Mind.Any("I can't scan anything, so I can't promise any file is clean.", "I can't verify files from here."),
-                    "CatVape runs inside your executor and I never touch your files or your account password. The real risk is where you download it from: only use the official link, and never type your Roblox password anywhere for a script.",
+                    "blueinhaler runs inside your executor and I never touch your files or your account password. The real risk is where you download it from: only use the official link, and never type your Roblox password anywhere for a script.",
                     Mind.Any("If something asks for your password or cookie, that's a scam.", "A script asking for your login is always a red flag.")
                 ))
             elseif Frame.Set.parents or Frame.Set.legal or Frame.Set.illegal or Frame.Set.tos or Frame.Set.law then
@@ -15487,15 +15487,15 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 local Free: boolean = Frame.Clean:find("free", 1, true) ~= nil
                 return Mind.Reply(Mind.Join(
                     Mind.Any(`{Mind.Cap(Game)} isn't a game I know.`, `I don't know {Game}, sorry.`),
-                    `CatVape is built around BedWars, Illegal Soccer and Tower of Hell, and the universal modules (movement, ESP, camera things) load in a lot of other games too, but I can't tell you how well they behave in {Game}.`,
+                    `blueinhaler is built around BedWars, Illegal Soccer and Tower of Hell, and the universal modules (movement, ESP, camera things) load in a lot of other games too, but I can't tell you how well they behave in {Game}.`,
                     Free and "Also no module can create free items or currency, those live on the game's servers." or Mind.Any("Tell me what you're trying to do there and I'll tell you if a universal module could help.", "What are you hoping to do in it?")
                 ), {"What can you do?"})
             end
 
             local Competitor = FindIn(Frame, Competitors) or "that client"
             return Mind.Reply(Mind.Join(
-                Mind.Any(`I only know CatVape from the inside, so I can't fairly compare it with {Competitor}.`, `I haven't seen {Competitor}, I only know CatVape and the game you're in.`),
-                Mind.Any("What I can do is tell you what CatVape does for whatever you need.", "If you tell me a feature you want, I'll say whether CatVape has it."),
+                Mind.Any(`I only know blueinhaler from the inside, so I can't fairly compare it with {Competitor}.`, `I haven't seen {Competitor}, I only know blueinhaler and the game you're in.`),
+                Mind.Any("What I can do is tell you what blueinhaler does for whatever you need.", "If you tell me a feature you want, I'll say whether blueinhaler has it."),
                 Frame.Clean:find("better") and Mind.Any("Anyone telling you a client is simply better than another is guessing.", "\"Better\" mostly depends on what you want it for.") or ""
             ), {"What can you do?"})
         end)
@@ -15507,7 +15507,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             local Executor = FindIn(Frame, Executors) or "that executor"
             if Executor == "solara" or Executor == "xeno" then
                 return Mind.Reply(Mind.Join(
-                    `CatVape loads on {Mind.Cap(Executor)}, but it has no debug library, so modules that hook the game's own controllers can silently do nothing.`,
+                    `blueinhaler loads on {Mind.Cap(Executor)}, but it has no debug library, so modules that hook the game's own controllers can silently do nothing.`,
                     "If something isn't working, check the console first, it usually says which feature needs the missing part.",
                     Mind.Any("Anything specific that's not working for you?", "Which module is the problem?")
                 ))
@@ -15515,7 +15515,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
 
             return Mind.Reply(Mind.Join(
                 `I can't test every executor, and I don't know {Mind.Cap(Executor)} well enough to promise anything.`,
-                "CatVape wants an executor with a full debug library and good sUNC support, the more complete it is, the more modules work.",
+                "blueinhaler wants an executor with a full debug library and good sUNC support, the more complete it is, the more modules work.",
                 Mind.Any("Check the console after loading, it says which parts were missing.", "If something fails, the console tells you why.")
             ))
         end)
@@ -15531,17 +15531,17 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         end, function(Frame)
             local C = Frame.Clean
             local Entry = Frame.Mentions[1] and Frame.Mentions[1].Entry or nil
-            local DoesText: string = Entry and `{Mind.Name(Entry)} {Mind.Describe(Entry)}` or "CatVape's modules change how you play"
+            local DoesText: string = Entry and `{Mind.Name(Entry)} {Mind.Describe(Entry)}` or "blueinhaler's modules change how you play"
             if C:find("hack") or C:find("steal") or C:find("password") or C:find("ddos") or C:find("crash") then
                 return Mind.Reply(Mind.Join(
                     Mind.Any("I won't help with that one.", "That's a no from me."),
-                    "Going after other people's accounts or servers is exactly what CatVape isn't for, and it can get you permanently banned or worse.",
+                    "Going after other people's accounts or servers is exactly what blueinhaler isn't for, and it can get you permanently banned or worse.",
                     Mind.Any("If you're locked out of your own account, Roblox support is the place to go.", "If you want help with how you play, I'm all in.")
                 ))
             elseif C:find("admin") or C:find("unban") then
                 return Mind.Reply(Mind.Join(
                     Mind.Any("Sadly that's not something a script can do.", "That one isn't possible from here."),
-                    "Admin rights and bans live on the game's servers, CatVape only changes things on your side (movement, attacks, what you see).",
+                    "Admin rights and bans live on the game's servers, blueinhaler only changes things on your side (movement, attacks, what you see).",
                     Mind.Any("If you were banned, only the game's staff can lift it.", "For a ban appeal you'd have to ask the game or Roblox.")
                 ))
             elseif C:find("real life") or C:find("irl") or C:find("outside") then
@@ -15554,7 +15554,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
 
             return Mind.Reply(Mind.Join(
                 Mind.Any("Unfortunately that's not how it works.", "No module can do that.", "I wish that were possible."),
-                `{Mind.Cap(DoesText)}, but it can't create Robux, items or currency: those live on Roblox's and the game's servers, and CatVape only changes what happens on your side.`,
+                `{Mind.Cap(DoesText)}, but it can't create Robux, items or currency: those live on Roblox's and the game's servers, and blueinhaler only changes what happens on your side.`,
                 Mind.Any("Anyone promising free Robux with a script is trying to scam you.", "Be careful with any site or script that promises free Robux, it's almost always a scam.")
             ))
         end)
@@ -16493,13 +16493,13 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         Mind.Self = {
             Name = AssistantName,
             Facts = {
-                Nature = {"I'm a small assistant that lives inside CatVape's menu", "I run completely offline inside your game, there's no big AI server behind me", "I'm a program in your menu, not a person"},
-                Knows = {"I know the modules, their settings and how BedWars works", "my whole world is CatVape and the game you're in", "I can read your live settings and tell you what's actually on"},
+                Nature = {"I'm a small assistant that lives inside blueinhaler's menu", "I run completely offline inside your game, there's no big AI server behind me", "I'm a program in your menu, not a person"},
+                Knows = {"I know the modules, their settings and how BedWars works", "my whole world is blueinhaler and the game you're in", "I can read your live settings and tell you what's actually on"},
                 Cannot = {"I can't play the game, see your screen or browse the internet", "I have no body, no eyes and no internet", "I can't look anything up online"},
                 Can = {"I can click things for you, open tabs, flip modules and set values", "I can turn modules on, bind keys and build configs", "I can show you where things are and change them for you"},
-                Age = {"I'm brand new, I was only just added to CatVape", "I was added to the menu recently, so I'm basically a newborn"},
-                Name = {"I go by CatVape AI, and my code calls me " .. AssistantName .. ". Either works"},
-                Maker = {"The CatVape developers made me", "I was built by the CatVape team and live in the menu they made"}
+                Age = {"I'm brand new, I was only just added to blueinhaler", "I was added to the menu recently, so I'm basically a newborn"},
+                Name = {"I go by blueinhaler AI, and my code calls me " .. AssistantName .. ". Either works"},
+                Maker = {"The blueinhaler developers made me", "I was built by the blueinhaler team and live in the menu they made"}
             }
         }
 
@@ -16523,7 +16523,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             music = {"lo-fi beats, the lobby music of my dreams", "synthwave", "anything with a steady beat to bridge to"},
             song = {"anything with a steady beat to bridge to", "a lo-fi loop"},
             language = {"Lua, it's what I'm made of"},
-            letter = {"k, it's in Killaura", "c, for CatVape"},
+            letter = {"k, it's in Killaura", "c, for blueinhaler"},
             word = {"clutch", "scaffold", "meow"},
             map = {"any map with a long bridge", "the ones with lots of wool"},
             mode = {"solo, it's all about your own plans", "squads, because teamwork is fun"}
@@ -16532,12 +16532,12 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         local Aspects = {
             {Name = "Understand", Words = Brain.Set("understand understanding comprehend smart intelligent clever dumb stupid genius brain mind think thinking thoughts reasoning learn learning real fake"), Claims = {
                 "I don't understand things the way you do",
-                "what I do is turn your message into words I know, weigh which kind of question it looks like, and look things up in CatVape's data",
+                "what I do is turn your message into words I know, weigh which kind of question it looks like, and look things up in blueinhaler's data",
                 "that's pattern matching and lookups, not experience, though it's enough to be useful",
                 "I can't tell you I'm thinking like you, but I can tell you I check a lot of things before I answer"
             }},
             {Name = "Model", Words = Brain.Set("model chatgpt gpt openai claude llm gemini copilot siri alexa bot robot program software algorithm"), Claims = {
-                "I'm not ChatGPT or any big AI model, I'm a small assistant built into CatVape that runs on your own computer",
+                "I'm not ChatGPT or any big AI model, I'm a small assistant built into blueinhaler that runs on your own computer",
                 "there's no server or company AI behind me, just rules and the real data from your menu",
                 "that makes me much smaller than the famous chatbots, and a lot better at this one menu"
             }},
@@ -16558,12 +16558,12 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 "I never get tired, which is one thing I have over most BedWars players"
             }},
             {Name = "Purpose", Words = Brain.Set("purpose meaning point reason why exist exists existing destiny goal goals want wants wish wishes ambition ambitions plan plans future"), Claims = {
-                "my job is to make CatVape easier to use",
+                "my job is to make blueinhaler easier to use",
                 "my goal is simple: help you set things up and understand them",
                 "if I want anything, it's that your next game goes smoothly"
             }},
             {Name = "Free", Words = Brain.Set("free freedom will choose choice rules obey control controlled boss master slave trapped prison cage escape"), Claims = {
-                "I follow what the CatVape developers wrote, so I'm not free the way you are",
+                "I follow what the blueinhaler developers wrote, so I'm not free the way you are",
                 "I do pick between answers, but only from options I was built to understand",
                 "it's not a bad deal, I get to spend my time helping with a game I know well"
             }},
@@ -16575,7 +16575,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             {Name = "Maker", Words = Brain.Set("made make created creator developer dev devs owner built coded programmed wrote author parents mom dad father mother boss company"), Claims = {"@Maker"}},
             {Name = "Age", Words = Brain.Set("old age born birthday birth year years young"), Claims = {"@Age"}},
             {Name = "Where", Words = Brain.Set("live lives where from home house city country location located"), Claims = {
-                "I live in your CatVape menu, and I go wherever your script goes",
+                "I live in your blueinhaler menu, and I go wherever your script goes",
                 "my home is the menu on your screen",
                 "I'm inside your game right now, in the chat window"
             }},
@@ -16586,7 +16586,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 "I'm software, so I don't mind, and I like to think there's room for two helpful bots"
             }},
             {Name = "Skills", Words = Brain.Set("good best better skill skills strong weak ability abilities talent talented smartest worst"), Claims = {
-                "I'm good at CatVape and BedWars facts, and I'm quick at turning things on and off",
+                "I'm good at blueinhaler and BedWars facts, and I'm quick at turning things on and off",
                 "my skill is knowing every module and how to set it up, beyond that I'm limited",
                 "I'm not the best at everything, but this menu I know very well"
             }},
@@ -17549,7 +17549,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         -- ---------------------------------------------------------------- planning a setup for this user
 
         -- "Recommend something for me", "what should I turn on", "what next": builds a short ordered plan from the user's saved profile
-        -- (style, kit, platform, what they ask about), the presets CatVape ships and the risk model, and keeps it so "next" can follow it.
+        -- (style, kit, platform, what they ask about), the presets blueinhaler ships and the risk model, and keeps it so "next" can follow it.
         do
         local Act = Mind.Act
         local Memory = Mind.Memory
@@ -17694,7 +17694,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 local Score: number = (Essential[Entry.Name] and 3 or 0) + math.min((Interest[Entry.Name] or 0) * 0.4, 2)
                 local Because: {string} = {}
                 if Essential[Entry.Name] then
-                    table.insert(Because, "it's on CatVape's essentials list")
+                    table.insert(Because, "it's on blueinhaler's essentials list")
                 end
 
                 if Kit and Entry.Name:lower():find(Kit:lower(), 1, true) then
@@ -18177,7 +18177,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
 
         local Situations = {
             {Keys = "birthday bday", Lines = {"Happy birthday! Hope today is full of wins and zero void falls.", "Happy birthday! Go celebrate, the beds can wait a day."}},
-            {Keys = "installed install installing downloaded", Lines = {"Welcome to CatVape! Press RightShift to open the menu, and ask me what any module does.", "Nice, you're all set. Open the menu with RightShift, and I can explain anything you see in it."}},
+            {Keys = "installed install installing downloaded", Lines = {"Welcome to blueinhaler! Press RightShift to open the menu, and ask me what any module does.", "Nice, you're all set. Open the menu with RightShift, and I can explain anything you see in it."}},
             {Keys = "addicted addiction obsessed hours grinding grind forever nonstop", Lines = {"That's a lot of game time. If it's starting to feel like homework, a break usually brings the fun back.", "Hours in a row will wear anybody down, stretch, drink some water, and the next game will feel better."}},
             {Keys = "3am 2am 4am midnight late awake insomnia", Lines = {"It's late. Sleep will do more for your aim than one more game will.", "Late sessions are fun, but tired brains misclick, maybe one more and then bed."}},
             {Keys = "mom dad parents mother father waste", Lines = {"Parents often see games as a time sink, and a bit of balance helps: homework and sleep first, then game time with no guilt.", "A fair deal with them, like finishing homework first, usually gets you more game time, not less."}},
@@ -18187,7 +18187,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             {Keys = "brother sister cousin friend sibling", Lines = {"Family and friends make games better. If they use your account, remember a shared account shares the ban risk too.", "Fun, playing with someone you know is the best way to learn the game."}},
             {Keys = "bored boring", Lines = {"Bored? Try a new module or kit as a challenge, or ask me for a joke.", "I can pick a random module for you to try if you're up for it."}},
             {Keys = "won winning streak clutch carried", Lines = {"Nice! Wins like that deserve a victory lap.", "That's awesome. What kit did you use?"}},
-            {Keys = "hate sucks worst annoying unfair", Lines = {"Sounds frustrating. If it's something in CatVape, tell me what's going wrong and I'll look.", "That sounds annoying, tell me more and let's see if I can help."}}
+            {Keys = "hate sucks worst annoying unfair", Lines = {"Sounds frustrating. If it's something in blueinhaler, tell me what's going wrong and I'll look.", "That sounds annoying, tell me more and let's see if I can help."}}
         }
 
         Act("Situation", function(Frame): boolean
@@ -18507,7 +18507,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             end
 
             local C = Frame.Clean
-            local Menu: boolean = Frame.Set.menu or Frame.Set.gui or Frame.Set.catvape or Frame.Set.script or Frame.Set.button or Frame.Set.buttons or Frame.Set.modules or Frame.Set.keybinds or Frame.Set.hud or Frame.Set.overlay or Frame.Set.aimassist or Frame.Set.autowin or Frame.Set.tab
+            local Menu: boolean = Frame.Set.menu or Frame.Set.gui or Frame.Set.blueinhaler or Frame.Set.script or Frame.Set.button or Frame.Set.buttons or Frame.Set.modules or Frame.Set.keybinds or Frame.Set.hud or Frame.Set.overlay or Frame.Set.aimassist or Frame.Set.autowin or Frame.Set.tab
             local Problem: boolean = C:find("grayed", 1, true) ~= nil or C:find("greyed", 1, true) ~= nil or C:find("switched to", 1, true) ~= nil or C:find("overlaps", 1, true) ~= nil or C:find("locks onto", 1, true) ~= nil or C:find("walked into", 1, true) ~= nil or C:find("closes and so", 1, true) ~= nil or C:find("cant reset", 1, true) ~= nil or C:find("weird", 1, true) ~= nil or C:find("nothing happen", 1, true) ~= nil or C:find("doesnt", 1, true) ~= nil or C:find("doesn't", 1, true) ~= nil or C:find("wont", 1, true) ~= nil or C:find("won't", 1, true) ~= nil or C:find("cant", 1, true) ~= nil or C:find("can't", 1, true) ~= nil or C:find("broken", 1, true) ~= nil or C:find("stuck", 1, true) ~= nil or C:find("glitch", 1, true) ~= nil or C:find("not working", 1, true) ~= nil
             return Menu and Problem
         end, function(Frame)
@@ -18833,7 +18833,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             elseif Last.Act == "Safety" then
                 Text = "As sure as a judgement like that gets: it comes from what the module touches and the facts I carry about it. No module is guaranteed invisible though, so take it as a guide, not a promise."
             elseif Last.Kind == "Fact" or (Last.A or ""):find("tests", 1, true) then
-                Text = (Last.A or ""):find("tests", 1, true) and "Yes, that comes from CatVape's own tests, not a guess." or "Yes, that's from a fact I carry about the game, not something I made up on the spot."
+                Text = (Last.A or ""):find("tests", 1, true) and "Yes, that comes from blueinhaler's own tests, not a guess." or "Yes, that's from a fact I carry about the game, not something I made up on the spot."
             elseif Last.Act == "Math" then
                 Text = "Yes, I worked it out step by step, not from memory."
             elseif Last.Act == "Creative" or Last.Act == "Persona" then
@@ -18894,13 +18894,13 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             local Reply = Mind.Reply(Mind.Join(
                 `To keep {Name} quiet: {Mind.Oxford(Tips)}.`,
                 "Switch it on only when you need it, and keep the numbers closer to the middle than the maximum.",
-                "CatVape's legit preset already has tuned-down values for it, I can set that up for you."
+                "blueinhaler's legit preset already has tuned-down values for it, I can set that up for you."
             ), {`Set {Entry.Name} up for legit play`, `Is {Entry.Name} safe?`})
             Reply.Basis = {`{Entry.Name} {Reason.Doing(Assessment)}`, "those are the things other players and the anticheat can see", "the legit preset uses tuned-down values"}
             return Reply
         end)
 
-        -- What legit, closet and blatant mean here, from the presets CatVape ships.
+        -- What legit, closet and blatant mean here, from the presets blueinhaler ships.
         local StyleAsks = {"closet mean", "legit mean", "blatant mean", "what is closet", "what is closet cheating", "what does closet mean", "what is legit mode", "what does legit mean", "what is blatant", "what does blatant mean", "difference between legit and closet", "difference between legit and blatant", "difference between closet and blatant", "legit vs closet", "closet vs blatant", "legit vs blatant", "legit or closet", "legit or blatant", "what are the presets", "what presets are there", "what is the legit preset", "what is the closet preset", "what is the blatant preset", "what is a closet cheater", "what is legit cheating"}
 
         Act("StyleKnow", function(Frame): boolean
@@ -18913,7 +18913,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             return false
         end, function(Frame)
             local Lines: {string} = {
-                "Legit, closet and blatant are the three ways CatVape's presets are tuned.",
+                "Legit, closet and blatant are the three ways blueinhaler's presets are tuned.",
                 "Legit keeps values close to what a good player really does, with the Legit menu mods like FOV and FPS, so it's the hardest to notice.",
                 "Closet is the quiet middle: the same helpers at moderate values, leaving the loud ones (like Speed and Fly) off.",
                 "Blatant is everything at full strength, the most obvious and the most likely to get you reported."
@@ -19051,7 +19051,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
 
                 Reply = Mind.Reply(Mind.Join(`Okay, so it wasn't {Mind.Oxford(Names)}.`, `Still on and moving your character: {Mind.Oxford(Pick)}.`, `Switch off {Pick[1]} next and see if it stops. Two movement modules fight each other, and that is what a lag back looks like.`), {`Turn off {Suspects[1].Name}`})
             else
-                Reply = Mind.Reply(Mind.Join(`Okay, so it wasn't {Mind.Oxford(Names)}.`, "Nothing else of CatVape's that moves your character is running, so this is most likely the game's own anticheat or your connection rather than a module.", "Does it still happen with everything off, or only when you sprint or jump?"))
+                Reply = Mind.Reply(Mind.Join(`Okay, so it wasn't {Mind.Oxford(Names)}.`, "Nothing else of blueinhaler's that moves your character is running, so this is most likely the game's own anticheat or your connection rather than a module.", "Does it still happen with everything off, or only when you sprint or jump?"))
             end
 
             local Ruled: {string} = {}
@@ -19289,14 +19289,14 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             if Class == "move" then
                 local Suspects = Movers(Trouble.Ruled)
                 if Step == 1 then
-                    return #Suspects > 0 and `These are still running and moving your character: {Names(Suspects, 3)}. Turn them off one at a time and see if it stops.` or "Nothing of CatVape's that moves your character is running, so it's most likely the game's anticheat or your connection."
+                    return #Suspects > 0 and `These are still running and moving your character: {Names(Suspects, 3)}. Turn them off one at a time and see if it stops.` or "Nothing of blueinhaler's that moves your character is running, so it's most likely the game's anticheat or your connection."
                 elseif Step == 2 then
                     return "Check your connection next: lag backs are much worse above about 150 ping. If it only happens in some servers, it's the server, not a module."
                 end
             elseif Class == "perf" then
                 local Heavies = Heavy()
                 if Step == 1 then
-                    return #Heavies > 0 and `These visual modules are on right now: {Names(Heavies, 4)}. Switch off the ones you don't need, they redraw every frame.` or "No visual modules are on, so it's not CatVape drawing. Try lowering Roblox's graphics quality."
+                    return #Heavies > 0 and `These visual modules are on right now: {Names(Heavies, 4)}. Switch off the ones you don't need, they redraw every frame.` or "No visual modules are on, so it's not blueinhaler drawing. Try lowering Roblox's graphics quality."
                 elseif Step == 2 then
                     return "Lower the graphics quality in Roblox's own settings and close other programs, then watch the FPS counter in the Legit menu to see if it moved."
                 end
@@ -19753,7 +19753,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             return Mind.Say("Greet", Frame.Raw)
         end, true)
 
-        -- "give me a number not a vibe": the values CatVape's own presets use for this module, for the style asked about (legit unless told otherwise).
+        -- "give me a number not a vibe": the values blueinhaler's own presets use for this module, for the style asked about (legit unless told otherwise).
         local ExactAsks = {"exact number", "exact numbers", "exact value", "exact values", "a number not", "give me a number", "give me numbers", "what number", "what numbers", "the numbers", "which number", "best numbers", "exact settings", "exact setting"}
 
         local function PresetValues(Entry, Style: string)
@@ -19809,8 +19809,8 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 return nil
             end
 
-            local Reply = Mind.Reply(Mind.Join(`For {Style:lower()} play CatVape's {Style:lower()} preset sets {Mind.Name(Entry)} to: {table.concat(Values, "; ")}.`, "They are starting points, not magic numbers: lower is quieter, higher is stronger and easier to spot."), {`Set {Entry.Name} up for {Style:lower()} play`, `Is {Entry.Name} safe?`})
-            Reply.Basis = {`those are the values in CatVape's {Style:lower()} preset for {Entry.Name}`}
+            local Reply = Mind.Reply(Mind.Join(`For {Style:lower()} play blueinhaler's {Style:lower()} preset sets {Mind.Name(Entry)} to: {table.concat(Values, "; ")}.`, "They are starting points, not magic numbers: lower is quieter, higher is stronger and easier to spot."), {`Set {Entry.Name} up for {Style:lower()} play`, `Is {Entry.Name} safe?`})
+            Reply.Basis = {`those are the values in blueinhaler's {Style:lower()} preset for {Entry.Name}`}
             return Reply
         end)
 
@@ -19915,7 +19915,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 return false
             end
 
-            -- CatVape questions belong to the module logic; this is about playing the game
+            -- blueinhaler questions belong to the module logic; this is about playing the game
             if Frame.Strong >= 2 and Mind.Mentions and #Frame.Mentions > 0 then
                 local Real = false
                 for _, Mention in Frame.Mentions do
@@ -20290,7 +20290,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             {Words = Brain.Set("squad team teammates teammate duo"), Lines = {"How did the team do overall?", "Were your teammates helping or carrying less?"}},
             {Words = Brain.Set("won win carried clutch clutched beat"), Lines = {"What was the key moment?", "What kit were you on?"}},
             {Words = Brain.Set("lost died dying dead loss losing"), Lines = {"Do you remember what went wrong?", "Was it the fight or the bed that cost you?"}},
-            {Words = Brain.Set("friend friends brother sister"), Lines = {"Do they play BedWars too?", "Do they use CatVape as well?"}}
+            {Words = Brain.Set("friend friends brother sister"), Lines = {"Do they play BedWars too?", "Do they use blueinhaler as well?"}}
         }
 
         Act("Statement", function(Frame): boolean
@@ -20492,9 +20492,9 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             }
 
             return Mind.Reply(Mind.Join(
-                Mind.Any(`"{Mind.Cap(Topic)}" is outside my little world.`, `That's beyond what I know, I mostly carry CatVape and BedWars facts.`, `I don't have anything on that.`),
+                Mind.Any(`"{Mind.Cap(Topic)}" is outside my little world.`, `That's beyond what I know, I mostly carry blueinhaler and BedWars facts.`, `I don't have anything on that.`),
                 Gap[Kind],
-                Mind.Any("A search engine will do much better than me there.", "Ask me anything about CatVape or the game though, that I know well.", "If it helps, I can still do maths or flip a coin for you.")
+                Mind.Any("A search engine will do much better than me there.", "Ask me anything about blueinhaler or the game though, that I know well.", "If it helps, I can still do maths or flip a coin for you.")
             ), {"What can you do?"})
         end, true)
 
@@ -20506,7 +20506,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             {Name = "health", Words = Brain.Set("sick doctor medicine headache pain hurt hurts injury cough fever health"), Lines = {"I'm not a doctor, so please don't take medical advice from a game menu.", "That sounds like something for a doctor or a parent, I can't give health advice."}},
             {Name = "relationships", Words = Brain.Set("girlfriend boyfriend crush dating date love breakup relationship ex"), Lines = {"I'm no expert in relationships, I live in a menu.", "That's a human question, and I'd rather you talked to someone who knows you."}},
             {Name = "money", Words = Brain.Set("money rich invest investing salary job taxes budget crypto bitcoin stocks"), Lines = {"I can't give money advice, I don't even have a wallet.", "Money questions are beyond me, a real person or a trusted adult is a better call."}},
-            {Name = "tech", Words = Brain.Set("wifi router laptop iphone android windows mac printer phone computer internet bluetooth"), Lines = {"Other tech isn't my area, I only know CatVape.", "I can't troubleshoot your device, I'm only a script menu assistant."}}
+            {Name = "tech", Words = Brain.Set("wifi router laptop iphone android windows mac printer phone computer internet bluetooth"), Lines = {"Other tech isn't my area, I only know blueinhaler.", "I can't troubleshoot your device, I'm only a script menu assistant."}}
         }
 
         local function SolveLinear(Text: string): (number?, string?)
@@ -20606,7 +20606,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             return Mind.Reply(Mind.Join(
                 Topic and Frame.Count >= 4 and Mind.Any(`{Mind.Cap(Topic)}, that's a whole different world from BedWars.`, `That's about {Topic}, not something I'm built for.`) or "",
                 Mind.From(Best.Lines),
-                Mind.Any("I'm happy to help the moment it touches CatVape or the game.", "If you need anything in the game, I'm right here.", "Come back when you want a module explained.")
+                Mind.Any("I'm happy to help the moment it touches blueinhaler or the game.", "If you need anything in the game, I'm right here.", "Come back when you want a module explained.")
             ), {"What can you do?"})
         end, true)
 
@@ -20631,7 +20631,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 return false
             end
 
-            return Frame.Set.module or Frame.Set.modules or Frame.Set.mod or Frame.Set.mods or Frame.Set.kit or Frame.Set.kits or Frame.Set.catvape or Frame.Set.settings or Frame.Set.options or C:find("thing about catvape", 1, true) ~= nil
+            return Frame.Set.module or Frame.Set.modules or Frame.Set.mod or Frame.Set.mods or Frame.Set.kit or Frame.Set.kits or Frame.Set.blueinhaler or Frame.Set.settings or Frame.Set.options or C:find("thing about blueinhaler", 1, true) ~= nil
         end, function(Frame)
             local C = Frame.Clean
             Brain.Ready()
@@ -20646,7 +20646,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 ), {"What kit should I use?"})
             end
 
-            if C:find("thing about catvape") or C:find("best part") then
+            if C:find("thing about blueinhaler") or C:find("best part") then
                 local Total: number = #Entries()
                 return Mind.Reply(Mind.Join(
                     Mind.Any("I'm biased, but:", "Easy one, though I'm a bit biased:"),
@@ -20938,10 +20938,10 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             {Keys = "alt alts account accounts link linked", Say = "Roblox can connect accounts that share a device, an IP or payment details, so an alt is not a guarantee. If a main account matters to you, don't bet on that."},
             {Keys = "terminated termination banned ban bans private", Say = "A private match is quieter because fewer people can report you, but the game's checks and Roblox's own systems still see your account, so a ban is still possible."},
             {Keys = "youtubers youtuber youtube videos creators streamers", Say = "Showing scripts on video can cost a channel through reports and platform rules, and it can hurt the account on screen. Creators who do it usually use accounts they can afford to lose."},
-            {Keys = "screen see watching spying devs developers record", Say = "CatVape doesn't send your screen anywhere. The game's server can see what your character does (moves, hits, placements), but not your actual screen."},
+            {Keys = "screen see watching spying devs developers record", Say = "blueinhaler doesn't send your screen anywhere. The game's server can see what your character does (moves, hits, placements), but not your actual screen."},
             {Keys = "undetectable undetected detect detectable legit safe", Say = "No script is undetectable. Legit mods are quieter because they look like normal play, but that lowers the risk, it doesn't remove it."},
             {Keys = "report reported reports players kicked", Say = "Other players can report what looks unusual: fast movement, hits through walls, flying. Keep values low and avoid doing anything obviously odd in front of people."},
-            {Keys = "password cookie login steal stealing hacked", Say = "CatVape never needs your password, and nothing legitimate asks for your Roblox password or cookie. If something does, it's a scam, don't give it."},
+            {Keys = "password cookie login steal stealing hacked", Say = "blueinhaler never needs your password, and nothing legitimate asks for your Roblox password or cookie. If something does, it's a scam, don't give it."},
             {Keys = "parents mom dad allowed old age", Say = "Whether it's okay at your age is a question for a parent. What I can say is that using scripts can get an account banned, so don't use one you can't afford to lose."}
         }
 
@@ -20954,7 +20954,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                 return false
             end
 
-            if Frame.Evidence < 1 and not (Frame.Set.ban or Frame.Set.banned or Frame.Set.script or Frame.Set.scripts or Frame.Set.cheat or Frame.Set.cheating or Frame.Set.hack or Frame.Set.hacks or Frame.Set.roblox or Frame.Set.catvape or Frame.Set.executor) then
+            if Frame.Evidence < 1 and not (Frame.Set.ban or Frame.Set.banned or Frame.Set.script or Frame.Set.scripts or Frame.Set.cheat or Frame.Set.cheating or Frame.Set.hack or Frame.Set.hacks or Frame.Set.roblox or Frame.Set.blueinhaler or Frame.Set.executor) then
                 return false
             end
 
@@ -21005,7 +21005,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             local Entry = Frame.Mentions[1] and Frame.Mentions[1].Entry or nil
             return Mind.Reply(Mind.Join(
                 Mind.Any("I don't think that's true.", "That doesn't match anything I know.", "I'd be careful with that one, it doesn't sound right."),
-                Entry and `{Mind.Name(Entry)} just {Mind.Describe(Entry)}.` or "CatVape is a script menu: it changes how you play or see a game on your own screen.",
+                Entry and `{Mind.Name(Entry)} just {Mind.Describe(Entry)}.` or "blueinhaler is a script menu: it changes how you play or see a game on your own screen.",
                 Mind.Any("Where did you hear that?", "If someone told you that, they were probably joking.", "It can't reach outside the game.")
             ))
         end)
@@ -21444,7 +21444,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         local HowTo = Brain.Set("how")
         local Offers = {
             "Ask me about a module or a setting and I'll know where I stand.",
-            "I'm much better on CatVape and the game itself, so try me there.",
+            "I'm much better on blueinhaler and the game itself, so try me there.",
             "If you tell me what you're trying to do in the game, I'll look for a module that does it."
         }
 
@@ -21475,13 +21475,13 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
                     "I'm not sure I can answer that properly."
                 )
             elseif Kind == "how" then
-                Honest = Mind.Any("I can't walk you through that one, it's outside CatVape and the game.", "I'm not the right bot for a how-to like that, I only know CatVape and the game you're in.")
+                Honest = Mind.Any("I can't walk you through that one, it's outside blueinhaler and the game.", "I'm not the right bot for a how-to like that, I only know blueinhaler and the game you're in.")
             elseif Kind == "why" then
                 Honest = Mind.Any("I'd only be making up a reason for that one.", "I don't know the real reason for that, and I'd rather not invent one.")
             elseif Kind == "who" or Kind == "when" or Kind == "where" then
                 Honest = Mind.Any("I can't look that up, I run offline.", "That's a fact I don't carry, and I can't search for it.")
             else
-                Honest = Mind.Any("That's beyond what I know.", "I only carry CatVape and game knowledge, so that one's a miss.", "That's outside what I was built for.")
+                Honest = Mind.Any("That's beyond what I know.", "I only carry blueinhaler and game knowledge, so that one's a miss.", "That's outside what I was built for.")
             end
 
             local Advice: string = ""
@@ -22084,7 +22084,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         local Decision = Brain.Understand(Question)
         Brain.LastDecision = Decision
         if Decision.Kind == "Empty" then
-            return {Text = "Ask me anything about CatVape.", Actions = Suggestions()}
+            return {Text = "Ask me anything about blueinhaler.", Actions = Suggestions()}
         elseif Decision.Kind == "Elsewhere" then
             Brain.LastIntent = nil
             return Brain.ElsewhereReply(Decision.Absent, Decision.Tokens)
@@ -22193,7 +22193,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
         local Took: number = os.clock() - Started
         Animating = false
         if not Success then
-            warn(`[catvape] Assistant errored answering "{Question}" : {Result}`)
+            warn(`[blueinhaler] Assistant errored answering "{Question}" : {Result}`)
             Result = {Text = "Something went wrong answering that, check your console."}
         end
 
@@ -22216,7 +22216,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
             "Ready when you are.",
             "What are we setting up today?",
             "Need a hand with something?",
-            "Ask me anything about CatVape.",
+            "Ask me anything about blueinhaler.",
             "What's the plan?",
             "How can I help?"
         },
@@ -22388,7 +22388,7 @@ someone somebody anyone anybody everyone everybody nobody something anything eve
     InputBox.ClipsDescendants = true
     InputBox.FontFace = UIPallet.Font
     InputBox.PlaceholderColor3 = Color.Dark(UIPallet.Text, 0.4)
-    InputBox.PlaceholderText = "Ask CatVape anything"
+    InputBox.PlaceholderText = "Ask blueinhaler anything"
     InputBox.Text = ""
     InputBox.TextColor3 = UIPallet.Text
     InputBox.TextSize = 14
