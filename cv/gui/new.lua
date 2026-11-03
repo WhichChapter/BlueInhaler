@@ -105,7 +105,7 @@ local function MountWindows(Budget: number?)
         if Entry.Build then
             local Success, Error = pcall(Entry.Build)
             if not Success then
-                warn(`[catvape] failed to build a staged window: {Error}`)
+                warn(`[blue inhaler] failed to build a staged window: {Error}`)
             end
         else
             pcall(function()
@@ -158,7 +158,7 @@ local function AttemptLoad(Object, Data, Name: string)
     local Success, Error = pcall(Object.Load, Object, Data)
     if not Success then
         LoadFailures += 1
-        warn(`[catvape] failed to load {Name}: {Error}`)
+        warn(`[blue inhaler] failed to load {Name}: {Error}`)
     end
 end
 
@@ -899,7 +899,7 @@ do
                 -- Use embedded fallback artwork when optional local assets are absent.
                 return Callback and Callback() or ""
             end
-            error(`Catsix offline dependency missing: ${FilePath}`)
+            error(`Blue Inhaler offline dependency missing: ${FilePath}`)
         end
         return (Callback or readfile)(FilePath)
     end
@@ -921,7 +921,7 @@ do
                     task.spawn(function()
                         repeat task.wait() until vape.Loaded ~= false
                         if vape.Loaded then
-                            vape:CreateNotification("Vape", `Your executor could not load custom assets, so icons and fonts use backups ({Result})`, 15, "warning")
+                            vape:CreateNotification("Blue Inhaler", `Your executor could not load custom assets, so icons and fonts use backups ({Result})`, 15, "warning")
                         end
                     end)
                 end
@@ -2049,7 +2049,7 @@ local function LoadProfile(self, SkipGui: boolean?, Profile: string?, Generation
                 writefile(`{vape.Directory}/profiles/{game.GameId}.gui.corrupt.txt`, Raw)
             end
             GuiData = {Categories = {Profiles = {List = Profiles}}, v = 1}
-            self:CreateNotification("Vape", `Your GUI settings were corrupted and got reset, the old file was saved as {game.GameId}.gui.corrupt.txt`, 15, "alert")
+            self:CreateNotification("Blue Inhaler", `Your GUI settings were corrupted and got reset, the old file was saved as {game.GameId}.gui.corrupt.txt`, 15, "alert")
         end
 
         GuiData.Categories = GuiData.Categories or {}
@@ -2106,7 +2106,7 @@ local function LoadProfile(self, SkipGui: boolean?, Profile: string?, Generation
     local MainData = ReadProfile(self.Profile)
     if MainData == false then
         MainData = {Categories = {}, Modules = {}, Legit = {}}
-        self:CreateNotification("Vape", `Failed to load {self.Profile} profile, saving is off until you fix or delete it`, 15, "alert")
+        self:CreateNotification("Blue Inhaler", `Failed to load {self.Profile} profile, saving is off until you fix or delete it`, 15, "alert")
         CanSave = false
     end
 
@@ -2145,7 +2145,7 @@ local function LoadProfile(self, SkipGui: boolean?, Profile: string?, Generation
 
         if MissingCount > ResolvedCount then
             CanSave = false
-            self:CreateNotification("Vape", `{MissingCount} of your saved modules are missing, the script did not fully load. Saving is off so your config is not overwritten, rejoin to fix it`, 20, "alert")
+            self:CreateNotification("Blue Inhaler", `{MissingCount} of your saved modules are missing, the script did not fully load. Saving is off so your config is not overwritten, rejoin to fix it`, 20, "alert")
         end
 
         for Name: string, Data: any in MainData.Legit do
@@ -2172,7 +2172,7 @@ local function LoadProfile(self, SkipGui: boolean?, Profile: string?, Generation
     end
 
     if LoadFailures > 0 then
-        self:CreateNotification("Vape", `{LoadFailures} settings failed to load, check the developer console (F9) for the errors`, 15, "alert")
+        self:CreateNotification("Blue Inhaler", `{LoadFailures} settings failed to load, check the developer console (F9) for the errors`, 15, "alert")
     end
 end
 
@@ -2194,8 +2194,8 @@ function vape:Load(SkipGui: boolean?, Profile: string?)
 
     if not Success then
         CanSave = false
-        warn(`[catvape] failed to load the {self.Profile} profile: {Error}`)
-        self:CreateNotification("Vape", `Failed to load {self.Profile} profile, saving is off until you fix or delete it`, 15, "alert")
+        warn(`[blue inhaler] failed to load the {self.Profile} profile: {Error}`)
+        self:CreateNotification("Blue Inhaler", `Failed to load {self.Profile} profile, saving is off until you fix or delete it`, 15, "alert")
     end
 
     self:SortCategories(true)
@@ -2345,7 +2345,7 @@ local function DeferLoad(Callback: () -> ())
         local Failures: number = LoadFailures
         local Success, Error = pcall(Callback)
         if not Success then
-            warn(`[catvape] failed to run deferred load: {Error}`)
+            warn(`[blue inhaler] failed to run deferred load: {Error}`)
         end
 
         SaveDefaults(true, Existing)
@@ -2369,11 +2369,11 @@ local function DeferLoad(Callback: () -> ())
         end)
 
         if not Success then
-            warn(`[catvape] failed to load deferred settings: {Error}`)
+            warn(`[blue inhaler] failed to load deferred settings: {Error}`)
         end
 
         if LoadFailures > Failures then
-            vape:CreateNotification("Vape", `{LoadFailures - Failures} settings failed to load, check the developer console (F9) for the errors`, 15, "alert")
+            vape:CreateNotification("Blue Inhaler", `{LoadFailures - Failures} settings failed to load, check the developer console (F9) for the errors`, 15, "alert")
         end
 
         DeferredLoads -= 1
@@ -2606,7 +2606,7 @@ function vape:LoadGUI()
 	        local Text, Error = vape:ExportConfig()
 	
 	        if not Text then
-	            vape:CreateNotification("Vape", `Could not export your config, {Error}`, 10, "alert")
+	            vape:CreateNotification("Blue Inhaler", `Could not export your config, {Error}`, 10, "alert")
 	            return
 	        end
 	
@@ -2633,7 +2633,7 @@ function vape:LoadGUI()
 	        if Success then
 	            vape:CreateNotification("Config imported", `Loaded {Result and Result ~= "" and `<font color="#FFAA00">{Result}</font>` or "the config"} into <font color="#FFAA00">{vape.Profile}</font>`, 5)
 	        else
-	            vape:CreateNotification("Vape", `Could not import that config, {Result}`, 10, "alert")
+	            vape:CreateNotification("Blue Inhaler", `Could not import that config, {Result}`, 10, "alert")
 	        end
 	    end,
 	    Placeholder = "Paste config here",
@@ -3116,7 +3116,7 @@ function vape:LoadGUI()
 		})
 		FontOption = TextGUI:CreateFont({
 		    Name = "Font",
-		    Default = "Vape",
+		    Default = "Blue Inhaler",
 		    Function = function()
 		        vape:UpdateTextGUI()
 		    end
@@ -3277,7 +3277,7 @@ function vape:LoadGUI()
 		})
 		CustomTextFont = TextGUI:CreateFont({
 		    Name = "Custom Font",
-		    Default = "Vape",
+		    Default = "Blue Inhaler",
 		    Function = function()
 		        vape:UpdateTextGUI()
 		    end,
@@ -4341,7 +4341,7 @@ function vape:Save(NewProfile: string?)
     if not Success then
         if not self.SaveFailed then
             self.SaveFailed = true
-            self:CreateNotification("Vape", `Failed to save your config, {Error}`, 10, "alert")
+            self:CreateNotification("Blue Inhaler", `Failed to save your config, {Error}`, 10, "alert")
         end
 
         return
@@ -4354,7 +4354,7 @@ function vape:Save(NewProfile: string?)
         self.SaveFailed = nil
     elseif not self.SaveFailed then
         self.SaveFailed = true
-        self:CreateNotification("Vape", `Failed to save your config, {GuiError or MainError}`, 10, "alert")
+        self:CreateNotification("Blue Inhaler", `Failed to save your config, {GuiError or MainError}`, 10, "alert")
     end
 end
 
@@ -8573,7 +8573,7 @@ Components = {
 	end,
 	Font = function(Props, Children, API)
 		local Fonts: {string} = {
-		    Props.Default or "Vape",
+		    Props.Default or "Blue Inhaler",
 		    "Custom"
 		}
 		
@@ -8584,7 +8584,7 @@ Components = {
 		end
 		
 		local Component = {
-		    Value = Fonts[1] == "Vape" and UIPallet.Font or Font.fromEnum(Enum.Font[Fonts[1]])
+		    Value = Fonts[1] == "Blue Inhaler" and UIPallet.Font or Font.fromEnum(Enum.Font[Fonts[1]])
 		}
 		local FontDropdown
 		local FontBox
@@ -8595,7 +8595,7 @@ Components = {
 		    List = Fonts,
 		    Function = function(Val: string)
 		        FontBox.Object.Visible = Val == "Custom" and FontDropdown.Object.Visible
-		        if Val == "Vape" then
+		        if Val == "Blue Inhaler" then
 		            Component.Value = UIPallet.Font
 		            Props.Function(Component.Value)
 		        elseif Val ~= "Custom" then
@@ -10140,8 +10140,8 @@ Components = {
 		        end, self.Enabled)
 		
 		        if not Success then
-		            warn(`[catvape] {Props.Name} errored turning {self.Enabled and "on" or "off"} : {Error}`)
-		            vape:CreateNotification("Vape", `{Props.Name} errored, check your console`, 10, "alert")
+		            warn(`[blue inhaler] {Props.Name} errored turning {self.Enabled and "on" or "off"} : {Error}`)
+		            vape:CreateNotification("Blue Inhaler", `{Props.Name} errored, check your console`, 10, "alert")
 		        end
 		    end)
 		end
@@ -11249,8 +11249,8 @@ Components = {
 		        end, self.Enabled)
 		
 		        if not Success then
-		            warn(`[catvape] {Props.Name} errored turning {self.Enabled and "on" or "off"} : {Error}`)
-		            vape:CreateNotification("Vape", `{Props.Name} errored, check your console`, 10, "alert")
+		            warn(`[blue inhaler] {Props.Name} errored turning {self.Enabled and "on" or "off"} : {Error}`)
+		            vape:CreateNotification("Blue Inhaler", `{Props.Name} errored, check your console`, 10, "alert")
 		        end
 		    end)
 		end
