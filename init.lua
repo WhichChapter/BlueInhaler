@@ -1,7 +1,7 @@
 -- Blue Inhaler bootstrap installer
 -- Downloads the published Lua files from GitHub into the executor filesystem.
 
-local Directory = "catsix"
+local Directory = "inhalerone"
 local BaseURL = "https://raw.githubusercontent.com/WhichChapter/BlueInhaler/main/"
 
 local Files = {

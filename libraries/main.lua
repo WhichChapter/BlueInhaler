@@ -1,3 +1,3 @@
--- Catsix offline build.
+-- inhalerone offline build.
 -- Remote key/licence authentication is intentionally disabled.
 -- This module does not contact Blue Inhaler services.

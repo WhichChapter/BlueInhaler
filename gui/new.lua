@@ -2,7 +2,7 @@ local License = ... or {}
 local vape = {
     ActiveBinds = {},
     Categories = {},
-    Directory = "catsix",
+    Directory = "inhalerone",
     FavoriteCount = 0,
     GUIColor = {
         Hue = 0.46,
@@ -2434,7 +2434,7 @@ function vape:LoadGUI()
 	ScarcityBanner.FontFace = UIPallet.Font
 	ScarcityBanner.Position = UDim2.fromScale(0, 0.8)
 	ScarcityBanner.Size = UDim2.fromScale(1, 0.022)
-	ScarcityBanner.Text = "Thank you for choosing Catsix Offline"
+	ScarcityBanner.Text = "Thank you for choosing inhalerone Offline"
 	ScarcityBanner.TextColor3 = Color3.new(1, 1, 1)
 	ScarcityBanner.TextScaled = true
 	ScarcityBanner.TextStrokeTransparency = 0.5
@@ -13489,7 +13489,7 @@ Components = {
 		
 		Confirm.MouseButton1Click:Connect(function()
             ShowPanel(nil)
-            vape:CreateNotification("Catsix Offline", "Publishing profiles is unavailable offline. Save profiles locally instead.", 8, "info")
+            vape:CreateNotification("inhalerone Offline", "Publishing profiles is unavailable offline. Save profiles locally instead.", 8, "info")
         end)
 
         Dislike.MouseButton1Click:Connect(function()
@@ -13541,7 +13541,7 @@ Components = {
 		end)
 		
 		EditorRemove.MouseButton1Click:Connect(function()
-            vape:CreateNotification("Catsix Offline", "Cloud profile deletion is unavailable offline.", 6, "info")
+            vape:CreateNotification("inhalerone Offline", "Cloud profile deletion is unavailable offline.", 6, "info")
         end)
 
         GridLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
@@ -13578,7 +13578,7 @@ Components = {
 		end)
 		
 		Update.MouseButton1Click:Connect(function()
-            vape:CreateNotification("Catsix Offline", "Cloud profile updates are unavailable offline.", 6, "info")
+            vape:CreateNotification("inhalerone Offline", "Cloud profile updates are unavailable offline.", 6, "info")
         end)
 
         Window:GetPropertyChangedSignal("Visible"):Connect(function()

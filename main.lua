@@ -2,7 +2,7 @@ local License = ... or {}
 if shared.vapedeveloper ~= nil then
     shared.VapeDeveloper = shared.vapedeveloper
 end
-local Directory: string = "catsix"
+local Directory: string = "inhalerone"
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
@@ -156,7 +156,7 @@ local function FinishLoading()
             TeleportedServers = true
             local TeleportScript: string = [[
                 shared.vapereload = true
-                loadstring(readfile('catsix/init.lua'), 'init')({})
+                loadstring(readfile('inhalerone/init.lua'), 'init')({})
             ]]
             if shared.VapeCustomProfile then
                 TeleportScript = `shared.VapeCustomProfile = "{shared.VapeCustomProfile}"\n{TeleportScript}`

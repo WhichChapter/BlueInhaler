@@ -1,5 +1,5 @@
 local Render = {
-    Directory = shared.vape and shared.vape.Directory or (shared.VapeDeveloper or shared.vapedeveloper) and "catprivate" or "catsix",
+    Directory = shared.vape and shared.vape.Directory or (shared.VapeDeveloper or shared.vapedeveloper) and "catprivate" or "inhalerone",
     Fonts = {
         UI = 0,
         System = 1,
