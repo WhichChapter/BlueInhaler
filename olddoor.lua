@@ -1,1 +1,0 @@
-return requirefile('rendervape/games/olddoor.lua')
