@@ -4030,7 +4030,7 @@ function Navigation.newActuator(Context, Config, Observer)
             return
         end
         Logged[Name] = Now + Config.DebugInterval
-        warn(`[catvape] brain {Name} | {Reason}`)
+        warn(`[Blue Inhaler] brain {Name} | {Reason}`)
     end
 
     return Actuator
