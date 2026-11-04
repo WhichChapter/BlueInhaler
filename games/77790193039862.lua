@@ -317,6 +317,85 @@ Run(function()
 end)
 
 Run(function()
+	local TriggerBot
+	local Targets
+	local RangeSlider
+	local AttackDelay = tick()
+	
+	TriggerBot = vape.Categories.Combat:CreateModule({
+	    Name = "Triggerbot",
+	    Function = function(Callback: boolean)
+	        if Callback then
+	            TriggerBot:Clean(RunService.RenderStepped:Connect(function()
+	                if not Entity.isAlive then return end
+	                
+	                local MouseLocation = UserInputService:GetMouseLocation()
+	                local UnitRay = Camera:ViewportPointToRay(MouseLocation.X, MouseLocation.Y)
+	                
+	                local RaycastParamsObj = RaycastParams.new()
+	                RaycastParamsObj.FilterType = Enum.RaycastFilterType.Include
+	                RaycastParamsObj.IgnoreWater = true
+	                
+	                local IncludeList = {}
+	                for _, v: any in Entity.List do
+	                    if v.Targetable then
+	                        if not Targets.Players.Enabled and v.Player then continue end
+	                        if not Targets.NPCs.Enabled and v.NPC then continue end
+	                        if v.Character then
+	                            table.insert(IncludeList, v.Character)
+	                        end
+	                    end
+	                end
+	                RaycastParamsObj.FilterDescendantsInstances = IncludeList
+	                
+	                local RaycastResult = workspace:Raycast(UnitRay.Origin, UnitRay.Direction * RangeSlider.Value, RaycastParamsObj)
+	                if RaycastResult and RaycastResult.Instance then
+	                    local HitInstance = RaycastResult.Instance
+	                    for _, v: any in Entity.List do
+	                        if v.Character and HitInstance:IsDescendantOf(v.Character) then
+	                            if AttackDelay < tick() then
+	                                local BlockFunction = OldHit or Arena.Client.startHit
+	                                local Reblock = false
+	                                
+	                                if debug.getupvalue(BlockFunction, 6) then
+	                                    Arena.Client.endBlockEvent:FireServer()
+	                                    debug.setupvalue(BlockFunction, 6, false)
+	                                    Reblock = true
+	                                end
+	                                
+	                                Arena.SwingFunction()
+	                                AttackDelay = tick() + 0.11
+	                                TargetInfo.Targets[v] = tick() + 1
+	                                
+	                                ReplicatedStorage.Remotes.HitRequest:FireServer(Entity.character.RootPart.Position, Camera.CFrame.LookVector, v.Character, v.Player)
+	                                
+	                                if Reblock then
+	                                    Arena.Client.beginBlockEvent:FireServer()
+	                                    debug.setupvalue(BlockFunction, 6, true)
+	                                end
+	                            end
+	                            break
+	                        end
+	                    end
+	                end
+	            end))
+	        end
+	    end,
+	    Tooltip = "Automatically attacks targets under your crosshair."
+	})
+	Targets = TriggerBot:CreateTargets({Players = true})
+	RangeSlider = TriggerBot:CreateSlider({
+	    Name = "Range",
+	    Min = 1,
+	    Max = 16,
+	    Default = 16,
+	    Suffix = function(Val: number)
+	        return Val == 1 and "stud" or "studs"
+	    end
+	})
+end)
+
+Run(function()
 	local Velocity
 	local Horizontal
 	local Vertical
