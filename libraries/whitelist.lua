@@ -5,7 +5,7 @@ local WhitelistData = {
     -- Table of authorized Roblox User IDs (numerical format)
     AuthorizedIds = {
         11928051766, -- Replace with actual Roblox User IDs
-        87654321,
+        8633732,
     },
 
     -- Metadata
