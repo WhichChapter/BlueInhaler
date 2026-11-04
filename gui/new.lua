@@ -757,7 +757,18 @@ local function GetFontBounds(Text: string, Size: number, FontFace, Width: number
         FontSize.Font = FontFace
     end
 
-    local Bounds: Vector2 = TextService:GetTextBoundsAsync(FontSize)
+   local Success, Bounds = pcall(function()
+    return TextService:GetTextBoundsAsync(FontSize)
+end)
+
+if not Success then
+    Bounds = TextService:GetTextSize(
+        Text,
+        Size,
+        Enum.Font.SourceSans,
+        Vector2.new(100000, 100000)
+    )
+end
 
     if Key then
         if BoundsCount > 2048 then
