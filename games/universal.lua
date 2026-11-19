@@ -1,3 +1,4 @@
+-- Universal game module entry point.
 local vape = shared.vape
 local loadstring = function(...)
     local Chunk, Error = loadstring(...)
