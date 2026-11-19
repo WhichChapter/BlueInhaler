@@ -1,3 +1,4 @@
+-- Bootstrap entry point; loads the BlueInhaler runtime.
 -- Blue Inhaler bootstrap installer
 -- Uses cached Lua files when available; downloads missing files from GitHub.
 
