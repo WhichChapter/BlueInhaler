@@ -1,3 +1,4 @@
+-- Main runtime setup and module initialisation.
 local License = ... or {}
 if shared.vapedeveloper ~= nil then
     shared.VapeDeveloper = shared.vapedeveloper
