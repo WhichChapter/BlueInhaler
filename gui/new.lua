@@ -41,57 +41,6 @@ local Lighting = cloneref(game:GetService("Lighting"))
 local Players = cloneref(game:GetService("Players"))
 local LocalPlayer = Players.LocalPlayer
 
--- Load the whitelist shipped in the libraries directory.
--- Keep using the original vape table declared at the top of this file.
-local function VerifyWhitelist()
-    local whitelistPath = vape.Directory .. "/libraries/whitelist.lua"
-
-    if not isfile(whitelistPath) then
-        warn("[Blue Inhaler] Whitelist file is missing: " .. whitelistPath)
-        LocalPlayer:Kick("[Blue Inhaler] Whitelist file is missing. Reinstall/update the files. | https://discord.gg/8fRwatznrc")
-        return false
-    end
-
-    local readSuccess, source = pcall(readfile, whitelistPath)
-    if not readSuccess or type(source) ~= "string" or source == "" then
-        warn("[Blue Inhaler] Could not read libraries/whitelist.lua.")
-        LocalPlayer:Kick("[Blue Inhaler] Whitelist could not be read.")
-        return false
-    end
-
-    local compileSuccess, chunk = pcall(loadstring, source, "whitelist.lua")
-    if not compileSuccess or type(chunk) ~= "function" then
-        warn("[Blue Inhaler] Whitelist compile failed: " .. tostring(chunk))
-        LocalPlayer:Kick("[Blue Inhaler] Whitelist file is invalid.")
-        return false
-    end
-
-    local runSuccess, whitelistModule = pcall(chunk)
-    if not runSuccess
-        or type(whitelistModule) ~= "table"
-        or type(whitelistModule.AuthorizedIds) ~= "table" then
-        warn("[Blue Inhaler] Whitelist must return a table containing AuthorizedIds.")
-        LocalPlayer:Kick("[Blue Inhaler] Whitelist file is invalid.")
-        return false
-    end
-
-    for _, id in ipairs(whitelistModule.AuthorizedIds) do
-        if tonumber(id) == LocalPlayer.UserId then
-            print("[Blue Inhaler] Whitelist passed.")
-            return true
-        end
-    end
-
-    LocalPlayer:Kick("[Blue Inhaler] You are not authorized to use this script. | https://discord.gg/8fRwatznrc")
-    return false
-end
-
-if not VerifyWhitelist() then
-    return
-end
-
-print("Whitelist passed! Loading GUI...")
-
 local FontSize: GetTextBoundsParams = Instance.new("GetTextBoundsParams")
 FontSize.Width = math.huge
 local NotificationCache = {}
