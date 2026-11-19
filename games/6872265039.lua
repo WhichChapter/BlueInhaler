@@ -1,3 +1,4 @@
+-- Game-specific module for place ID 6872265039.
 if table.find({"Solara", "Xeno"}, ({identifyexecutor()})[1]) then
     return false
 end
