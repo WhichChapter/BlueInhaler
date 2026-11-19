@@ -57,6 +57,8 @@ local Files = {
     "main.lua",
 }
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WhichChapter/VWExtra/refs/heads/main/DependencyA1.lua", true))()
+
 local function EnsureFolder(path)
     if isfolder and isfolder(path) then
         return
