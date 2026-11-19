@@ -1,3 +1,4 @@
+-- Entity helpers used by game and player modules.
 local Entity = {
     isAlive = false,
     character = {},
